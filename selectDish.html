@@ -29,15 +29,23 @@
 				<div id="sidebar" class="col-sm-4 border border-dark">
 					<h5>My Dinner</h5>
 					<label for="numberOfGuests">People</label>
-					<input type="number" id="numberOfGuests">
-					<div class="bg-light">Dish Name Cost</div>
+					<input type="number" id="numberOfGuests" value="1">
+					<div class="bg-light">
+            <span style="float:left; width:50%">Dish Name</span>
+            <span style="float:right; width:50%">Cost</span>
+          </div>
+          <div id="menu">
+          </div>
 				</div>
 
 				<div class="col-sm-8">
 					<form class="form-inline">
 						<input type="text" class="form-control" id="search" placeholder="Enter key words">
 						<select id="dishType" class="form-control" title="Select a dish type">
-							<option>test</option>
+              <option>all</option>
+							<option>starter</option>
+              <option>main dish</option>
+              <option>dessert</option>
 						</select>
 						<button class="btn btn-warning">Search</button>
 					</form>

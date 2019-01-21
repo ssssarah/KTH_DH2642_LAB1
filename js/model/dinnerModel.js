@@ -99,9 +99,9 @@ var DinnerModel = function() {
           found = true;
         }
       }
-      return dish.type == type && found;
+      //return dish.type == type && found;
       // TODO REENABLE TYPE FILTER ??
-      // return found;
+      return found;
     });
   };
 
