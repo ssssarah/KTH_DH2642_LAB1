@@ -1,8 +1,22 @@
-header {
+.myBg {
   background-color: #E5E5E5;
 }
 
+.box {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.img-fluid {
+  min-width: 100%;
+}
+
+#ingredients {
+  background-color: #FFE599;
+}
+
 #totalPrice {
-  text-align: right;
   color: #A44F46;
 }
