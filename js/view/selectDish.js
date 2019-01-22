@@ -33,6 +33,8 @@ var SelectDishView = function (container, model) {
 		card.classList.add("mr-3");
 		card.style.width = "18rem";
 
+		//var item = document.createElement("div");
+
     	var img = document.createElement("img");
     	img.classList.add("card-img-top");
     	img.src =  relativePath + dish.image;
