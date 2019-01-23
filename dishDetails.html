@@ -8,16 +8,16 @@
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <title>Dinner planner</title>
 
-	  <style>
+  <style>
 
-		  .card {
+    .card {
 			  border-radius:0 !important;
 		  }
 
 	  </style>
-  </head>
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 </head>
 
@@ -31,13 +31,15 @@
 
 <body>
   <div class="container-fluid">
-    <div id="dishDetailView">
 
-      <div class="row">
+    <div class="row">
 
-
-        <div id="sidebar" class="col-sm-2 border border-dark">
-          <h5 class="mt-2">My Dinner</h5>
+      <div id="sidebarView" class="col-sm-2 border border-dark">
+        <div id="hamburger" class="m-2">
+          <span class="font-weight-bold align-midle">My Dinner</span>
+          <img id="hamburger_icon" src="images/Hamburger_icon.png" alt="Hamburger">
+        </div>
+        <div id="hamburger_content">
           <form>
             <div class="form-group row">
               <label class="col-sm col-form-label" for="numberOfGuests">People</label>
@@ -57,11 +59,13 @@
 
           <h5 class="text-right price">SEK 0.00</h5>
           <div class="text-center">
-            <button class="btn btn-warning btn-sm" onclick="window.location.href='confirm.html'">Confirm Dinner</button>
+            <button class="btn btn-warning btn-sm" disabled="disabled">Confirm Dinner</button>
           </div>
         </div>
+      </div>
 
-        <div class="col-sm-5 px-3 py-2" id="dishDetail">
+      <div id="dishDetailsView">
+        <div class="col-sm-5 px-3 py-2" id="recipie">
           <h2 class="text-uppercase">French toast</h2>
           <img src="images/toast.jpg" alt="French toast" class="img-fluid bigImage">
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
@@ -79,20 +83,21 @@
 
         <div class="col-sm-5">
           <div class="border border-dark p-3" id="ingredients">
-          <h4 class="text-uppercase">Ingredients for 3 people</h4>
-          <hr>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-          <hr>
-          <div class="box">
-            <button class="btn btn-warning btn-sm">Add to menu</button>
-            <h6>SEK 0.00</h6>
+            <h4 class="text-uppercase">Ingredients for 3 people</h4>
+            <hr>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+            <hr>
+            <div class="box">
+              <button class="btn btn-warning btn-sm" onclick="window.location.href='selectAgain.html'">Add to menu</button>
+              <h6>SEK 0.00</h6>
+            </div>
           </div>
-        </div>
         </div>
 
       </div>
+
     </div>
   </div>
 
@@ -104,8 +109,25 @@
 
   <!-- The application JavaScript code -->
   <script src="js/model/dinnerModel.js"></script>
-  <script src="js/view/selectDish.js"></script>
+  <script src="js/view/sidebarView.js"></script>
   <script src="js/app.js"></script>
+
+  <script>
+    (function() {
+      var hamburger = document.getElementById('hamburger_icon');
+      var hamburger_content = document.getElementById('hamburger_content');
+      hamburger.addEventListener('click', function(e) {
+        if (hamburger_content.style.display == "block") {
+          hamburger_content.style.display = "none";
+        } else {
+
+          hamburger_content.style.display = "block";
+        }
+        e.preventDefault();
+      });
+    })();
+  </script>
+
 
 
   <!-- TODO: Here you should include JS code for your other views -->

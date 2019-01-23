@@ -16,8 +16,6 @@ var SelectDishView = function(container, model) {
 
   var relativePath = "images/";
 
-  var numberOfGuests = container.find("#numberOfGuests");
-
   //init the select of dish types
   var dishTypeSelect = container.find("#dishType")[0];
   var dishTypes = model.getAllDishTypes();

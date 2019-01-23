@@ -17,6 +17,16 @@
   background-color: #FFE599;
 }
 
+#hamburger {
+  display: grid;
+  grid-template-columns: auto 35px;
+  font-size: 1.4em;
+}
+
+#hamburger_icon {
+  width: 35px;
+}
+
 .price {
   color: #A44F46;
 }
@@ -26,6 +36,9 @@
     text-align: right;
   }
 
+  #hamburger_icon {
+    display: none;
+  }
 }
 
 @media (max-width:575px) {
@@ -35,6 +48,10 @@
 
   #goBack {
     text-align: center;
+  }
+
+  #hamburger_content {
+    display: none;
   }
 
 }
