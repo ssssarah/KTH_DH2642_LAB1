@@ -99,11 +99,7 @@ var DinnerModel = function() {
           found = true;
         }
       }
-      //return dish.type == type && found;
-      // TODO REENABLE TYPE FILTER ??
-      return found && type != ""
-        ? (dish.type == type)
-        : true;
+      return type ? (dish.type == type && found) : found;
     });
   };
 
