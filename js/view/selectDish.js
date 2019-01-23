@@ -12,71 +12,75 @@
  * @param {jQuery object} container - references the HTML parent element that contains the view.
  * @param {Object} model - the reference to the Dinner Model
  */
-var SelectDishView = function (container, model) {
+var SelectDishView = function(container, model) {
 
-	var relativePath = "images/";
+  var relativePath = "images/";
 
-	var numberOfGuests = container.find("#numberOfGuests");
+  var numberOfGuests = container.find("#numberOfGuests");
 
-	//init the select of dish types
-	var dishTypeSelect = container.find("#dishType")[0];
-	var dishTypes = model.getAllDishTypes();
+  //init the select of dish types
+  var dishTypeSelect = container.find("#dishType")[0];
+  var dishTypes = model.getAllDishTypes();
 
-	for(var key in dishTypes){
-		var dishType = dishTypes[key];
-		var el = document.createElement("option");
-		el.setAttribute("value", dishType);
-		el.innerText = dishType;
-		dishTypeSelect.appendChild(el);
-	}
+  for (var key in dishTypes) {
+    var dishType = dishTypes[key];
+    var el = document.createElement("option");
+    el.setAttribute("value", dishType);
+    el.innerText = dishType;
+    dishTypeSelect.appendChild(el);
+  }
 
-	//populate the list of dishes
-    var dishList = container.find("#dishList")[0];
-	var type = getParameterByName("dishType");
-	var search = getParameterByName("search");
-	search = search !== "undefined" ? search : false;
-	var dishes = model.getAllDishes(type, search);
+  //populate the list of dishes
+  var dishList = container.find("#dishList")[0];
+  var type = getParameterByName("dishType");
+  var search = getParameterByName("search");
+  search = search !== "undefined"
+    ? search
+    : false;
+  var dishes = model.getAllDishes(type, search);
 
-	for(var key in dishes){
-		var dish = dishes[key];
+  for (var key in dishes) {
+    var dish = dishes[key];
 
-		var card = document.createElement("div");
-		card.classList.add("card");
-		card.classList.add("col-sm-2");
-		card.classList.add("border");
-		card.classList.add("border-dark");
-		card.classList.add("mr-3");
-		card.style.width = "18rem";
+    var card = document.createElement("div");
+    card.classList.add("card");
+    card.classList.add("col-sm-2");
+    card.classList.add("border");
+    card.classList.add("border-dark");
+    card.classList.add("mr-3");
+    card.style.width = "18rem";
 
-    	var img = document.createElement("img");
-    	img.classList.add("card-img-top");
-    	img.src =  relativePath + dish.image;
+    //var item = document.createElement("div");
 
-    	var body = document.createElement("div");
-    	body.classList.add("card-body");
+    var img = document.createElement("img");
+    img.classList.add("card-img-top");
+    img.src = relativePath + dish.image;
 
-    	var form = document.createElement("form");
-    	form.setAttribute("method", "get");
-    	form.setAttribute("action",  "dishDetails.html");
+    var body = document.createElement("div");
+    body.classList.add("card-body");
 
-		var id = document.createElement("input");
-		id.setAttribute("type", "hidden");
-		id.setAttribute("value", dish.id);
-		id.setAttribute("name", "dishId");
+    var form = document.createElement("form");
+    form.setAttribute("method", "get");
+    form.setAttribute("action", "dishDetails.html");
 
-    	var btn = document.createElement("button");
-    	btn.setAttribute("type", "submit");
-    	btn.classList.add("btn");
-    	btn.classList.add("btn-light");
-    	btn.innerText = dish.name;
+    var id = document.createElement("input");
+    id.setAttribute("type", "hidden");
+    id.setAttribute("value", dish.id);
+    id.setAttribute("name", "dishId");
 
-        form.appendChild(id);
-    	form.appendChild(btn);
-    	body.appendChild(form);
-    	card.appendChild(img);
-    	card.appendChild(body);
-    	dishList.appendChild(card);
-	}
+    var btn = document.createElement("button");
+    btn.setAttribute("type", "submit");
+    btn.classList.add("btn");
+    btn.classList.add("btn-light");
+    btn.innerText = dish.name;
+
+    form.appendChild(id);
+    form.appendChild(btn);
+    body.appendChild(form);
+    card.appendChild(img);
+		card.appendChild(body);
+    dishList.appendChild(card);
+  }
 
 };
 

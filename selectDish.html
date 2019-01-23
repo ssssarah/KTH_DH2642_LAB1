@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,74 +8,86 @@
     <title>Dinner planner</title>
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+			integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-</head>
+  </head>
 
-<header>
+  <header class="myBg">
 
-    <div class="bg-secondary text-center pb-3 pt-3">
-        <h1>Dinner planner</h1>
-    </div>
+	  <div class="text-center pb-3 pt-3">
+		  <h1>Dinner planner</h1>
+	  </div>
 
-</header>
+  </header>
 
-<body>
-<div class="container">
-    <div id="selectDishView">
+  <body>
+	<div class="container-fluid">
+		<div id="selectDishView">
 
-        <div class="row">
+			<div class="row">
 
-            <div id="sidebar" class="col-sm-2 border border-dark">
-                <h5>My Dinner</h5>
-                <label for="numberOfGuests">People</label>
-                <input type="number" class="form-control" id="numberOfGuests" value="1">
-                <div class="bg-light">
-                    <span style="float:left; width:50%">Dish Name</span>
-                    <span style="float:right; width:50%">Cost</span>
-                </div>
-
-                <div id="menu"></div>
-
-                <h5 id="totalPrice">SEK 0.00</h5>
-                <button class="btn btn-warning">Confirm Dinner</button>
+				<div id="sidebar" class="col-sm-2 border border-dark">
+					<h5 class="mt-2">My Dinner</h5>
+          <form>
+            <div class="form-group row">
+    					<label class="col-sm col-form-label" for="numberOfGuests">People</label>
+              <div class="col-sm">
+				         <input type="number" class="form-control" id="numberOfGuests" value="1">
+              </div>
             </div>
+          </form>
 
-            <div class="col-sm-10">
-                <h5>FIND A DISH</h5>
-                <form class="form-inline">
-                    <input type="text" name="search" class="form-control" id="search" placeholder="Enter key words">
-                    <select id="dishType" name="dishType" class="form-control" title="Select a dish type">
-                        <option value="">All</option>
-                    </select>
-                    <button class="btn btn-warning">Search</button>
-                </form>
+					<div class="myBg my-1 small box">
+            <div>Dish Name</div>
+            <div>Cost</div>
+          </div>
 
-                <div class="row mt-3" id="dishList"></div>
-            </div>
-        </div>
-    </div>
-</div>
+          <div id="menu" class="mt-1 mb-3">
+          </div>
 
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+          <h5 class="text-right price">SEK 0.00</h5>
+          <div class="text-center">
+            <button class="btn btn-warning btn-sm" onclick="window.location.href='confirm.html'">Confirm Dinner</button>
+          </div>
+				</div>
 
-<!-- The application JavaScript code -->
-<script src="js/model/dinnerModel.js"></script>
-<script src="js/view/selectDish.js"></script>
-<script src="js/app.js"></script>
+				<div class="col-sm-10">
+          <h5>FIND A DISH</h5>
+					<form class="form-inline">
+						<input type="text" class="form-control mx-2" name="search" placeholder="Enter key words">
+						<select id="dishType" name="dishType" class="form-control mx-2" title="Select a dish type">
+              <option value="">all</option>
+						</select>
+						<button class="btn btn-warning mx-2">Search</button>
+					</form>
+
+          <br>
+
+					<div class="row" id="dishList"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+			integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+			crossorigin="anonymous"></script>
+	<!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+			integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+			crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+			integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+			crossorigin="anonymous"></script>
+
+	<!-- The application JavaScript code -->
+	<script src="js/model/dinnerModel.js"></script>
+	<script src="js/view/selectDish.js"></script>
+	<script src="js/app.js"></script>
 
 
-<!-- TODO: Here you should include JS code for your other views -->
-</body>
+	<!-- TODO: Here you should include JS code for your other views -->
+  </body>
 </html>

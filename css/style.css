@@ -1,8 +1,40 @@
-header {
+.myBg {
   background-color: #E5E5E5;
 }
 
-#totalPrice {
-  text-align: right;
+.box {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bigImage {
+  min-width: 100%;
+}
+
+#ingredients {
+  background-color: #FFE599;
+}
+
+.price {
   color: #A44F46;
+}
+
+@media (min-width:576px) {
+  #goBack {
+    text-align: right;
+  }
+
+}
+
+@media (max-width:575px) {
+  #amount {
+    text-align: center;
+  }
+
+  #goBack {
+    text-align: center;
+  }
+
 }
