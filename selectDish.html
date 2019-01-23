@@ -31,6 +31,7 @@
           <span class="font-weight-bold align-midle">My Dinner</span>
           <img id="hamburger_icon" src="images/Hamburger_icon.png" alt="Hamburger">
         </div>
+        <h5 id="totalPrice" class="text-right price">SEK 0.00</h5>
         <div id="hamburger_content">
           <form>
             <div class="form-group row">
@@ -89,12 +90,14 @@
     (function() {
       var hamburger = document.getElementById('hamburger_icon');
       var hamburger_content = document.getElementById('hamburger_content');
+      var price = document.getElementById('totalPrice');
       hamburger.addEventListener('click', function(e) {
         if (hamburger_content.style.display == "block") {
           hamburger_content.style.display = "none";
+          price.style.display = "block";
         } else {
-
           hamburger_content.style.display = "block";
+          price.style.display = "none";
         }
         e.preventDefault();
       });

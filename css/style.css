@@ -39,6 +39,14 @@
   #hamburger_icon {
     display: none;
   }
+
+  #hamburger_content {
+    display: block;
+  }
+
+  #totalPrice {
+    display: none;
+  }
 }
 
 @media (max-width:575px) {
