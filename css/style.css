@@ -9,7 +9,7 @@
   align-items: center;
 }
 
-.img-fluid {
+.bigImage {
   min-width: 100%;
 }
 
@@ -17,7 +17,7 @@
   background-color: #FFE599;
 }
 
-#totalPrice {
+.price {
   color: #A44F46;
 }
 
