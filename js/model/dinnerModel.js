@@ -35,17 +35,16 @@ var DinnerModel = function() {
     for (var key in menu) {
       var dishIngredients = menu[key].ingredients;
       for (var key2 in dishIngredients) {
-				var index = ingredients.findIndex(function(item) {
-					return item.name === dishIngredients[key2].name;
-				});
-				if (index != -1) {
-					ingredients[index].quantity += dishIngredients[key2].quantity;
-					ingredients[index].price += dishIngredients[key2].price;
-				}
-        else
-					ingredients.push(dishIngredients[key2]);
+        var index = ingredients.findIndex(function(item) {
+          return item.name === dishIngredients[key2].name;
+        });
+        if (index != -1) {
+          ingredients[index].quantity += dishIngredients[key2].quantity;
+          ingredients[index].price += dishIngredients[key2].price;
+        } else
+          ingredients.push(dishIngredients[key2]);
+        }
       }
-    }
     return ingredients;
   };
 
@@ -53,9 +52,9 @@ var DinnerModel = function() {
   this.getTotalMenuPrice = function() {
     var price = 0;
     var allIngredients = this.getAllIngredients();
-		for (var key in allIngredients) {
-			price += allIngredients[key].price;
-		}
+    for (var key in allIngredients) {
+      price += allIngredients[key].price;
+    }
     return price * numberOfGuests;
   };
 
@@ -63,12 +62,12 @@ var DinnerModel = function() {
   //it is removed from the menu and the new one added.
   this.addDishToMenu = function(id) {
     var dish = this.getDish(id);
-		if(menu.findIndex(function(item) {
-			return item.id === id;
-		}) != -1) {
-			this.removeDishFromMenu(id);
-		}
-		menu.push(dish);
+    if (menu.findIndex(function(item) {
+      return item.id === id;
+    }) != -1) {
+      this.removeDishFromMenu(id);
+    }
+    menu.push(dish);
     // if (dish != null)
     //   menu.push(dish);
   };
@@ -76,9 +75,10 @@ var DinnerModel = function() {
   //Removes dish from menu
   this.removeDishFromMenu = function(id) {
     for (var key in menu) {
-      if (menu[key].id == id)
+      if (menu[key].id == id) {
         menu.splice(key, 1);
-      return;
+        return;
+      }
     }
   };
 
@@ -101,7 +101,9 @@ var DinnerModel = function() {
       }
       //return dish.type == type && found;
       // TODO REENABLE TYPE FILTER ??
-      return found;
+      return found && type != ""
+        ? (dish.type == type)
+        : true;
     });
   };
 
@@ -385,5 +387,16 @@ var DinnerModel = function() {
       ]
     }
   ];
+
+  this.getAllDishTypes = function() {
+    var dishTypes = [];
+    for (var key in dishes) {
+      var type = dishes[key].type;
+      if (dishTypes.indexOf(type) == -1) {
+        dishTypes.push(type);
+      }
+    }
+    return dishTypes;
+  };
 
 };
