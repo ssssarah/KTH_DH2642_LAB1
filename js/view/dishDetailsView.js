@@ -14,6 +14,4 @@
  */
 var DishDetailsView = function (container, model) {
 
-
-
 }

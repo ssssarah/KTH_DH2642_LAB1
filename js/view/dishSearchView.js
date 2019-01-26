@@ -12,7 +12,7 @@
  * @param {jQuery object} container - references the HTML parent element that contains the view.
  * @param {Object} model - the reference to the Dinner Model
  */
-var SelectDishView = function(container, model) {
+var DishSearchView = function(container, model) {
 
   var relativePath = "images/";
 
@@ -35,49 +35,36 @@ var SelectDishView = function(container, model) {
   search = search !== "undefined"
     ? search
     : false;
-  var dishes = model.getAllDishes(type, search);
+  dishes = model.getAllDishes(type, search);
 
   for (var key in dishes) {
     var dish = dishes[key];
 
-    var card = document.createElement("div");
-    card.classList.add("card");
-    card.classList.add("col-sm-2");
-    card.classList.add("border");
-    card.classList.add("border-dark");
-    card.classList.add("mr-3");
-    card.style.width = "18rem";
+    var item = document.createElement("button");
+    item.classList.add("btn");
+    item.classList.add("wrapper");
+    item.classList.add("myBg");
+    item.classList.add("border");
+    item.classList.add("border-dark");
+    item.classList.add("mx-4");
+    item.classList.add("my-4");
 
     //var item = document.createElement("div");
 
     var img = document.createElement("img");
-    img.classList.add("card-img-top");
+    img.classList.add("border-bottom");
+    img.classList.add("border-dark");
     img.src = relativePath + dish.image;
+    img.alt = dish.name;
+    img.style = "width:200px";
 
-    var body = document.createElement("div");
-    body.classList.add("card-body");
+    var title = document.createElement("h5");
+    var t = document.createTextNode(dish.name);
 
-    var form = document.createElement("form");
-    form.setAttribute("method", "get");
-    form.setAttribute("action", "dishDetails.html");
-
-    var id = document.createElement("input");
-    id.setAttribute("type", "hidden");
-    id.setAttribute("value", dish.id);
-    id.setAttribute("name", "dishId");
-
-    var btn = document.createElement("button");
-    btn.setAttribute("type", "submit");
-    btn.classList.add("btn");
-    btn.classList.add("btn-light");
-    btn.innerText = dish.name;
-
-    form.appendChild(id);
-    form.appendChild(btn);
-    body.appendChild(form);
-    card.appendChild(img);
-		card.appendChild(body);
-    dishList.appendChild(card);
+    title.appendChild(t);
+    item.appendChild(img);
+		item.appendChild(title);
+    dishList.appendChild(item);
   }
 
 };
@@ -87,7 +74,7 @@ function getParameterByName(name) {
     name = name.replace(/[\[\]]/g, '\\$&');
     var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
         results = regex.exec(url);
-    if (!results) return null;
+    if (!results) return ''; // Get all type of dishes while switching to the page
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }

@@ -23,38 +23,44 @@
 
 <body>
   <div class="container-fluid">
-    <div class="row p-3 border-bottom border-dark mb-2">
-      <div class="col-sm" id="amount">
-        <h3>My Dinner: 3 people</h3>
-      </div>
-      <div class="col-sm" id="goBack">
-        <button class="btn btn-warning btn-sm" onclick="window.location.href='selectAgain.html'">Go back and edit dinner</button>
-      </div>
-    </div>
-    <div class="row m-3" id="summary">
-      <div class="col-sm-8 text-right" id="confirmList">
-        <ul class="list-inline w-100">
-          <li class="list-inline-item px-2">
-            <img class="img-fluid border border-dark" src="images/toast.jpg" alt="French toast">
-            <h6 class="price">93.00 SEK</h6>
-          </li>
-          <li class="list-inline-item px-2">
-            <img class="img-fluid border border-dark" src="images/sourdough.jpg" alt="Sourdough Starter">
-            <h6 class="price">18.00 SEK</h6>
-          </li>
-        </ul>
-      </div>
-      <div class="col-sm-4 border-left border-dark">
-        <h6>Total:</h6>
-        <h6 class="price" id="totalPrice">111.00 SEK</h6>
-      </div>
-    </div>
 
-    <hr>
-    <div class="text-center">
-      <button class="btn btn-warning" onclick="window.location.href='print.html'">Print Full Recipie</button>
-    </div>
+    <div id="first-row" class="row no-gutters">
+      
+      <div id="confirmView" class="col-12">
+        <div class="row p-3 border-bottom border-dark mb-2">
+          <div class="col-sm" id="amount">
+            <h3>My Dinner: 3 people</h3>
+          </div>
+          <div class="col-sm" id="goBack">
+            <button class="btn btn-warning btn-sm" onclick="window.location.href='selectAgain.html'">Go back and edit dinner</button>
+          </div>
+        </div>
+        <div class="row m-3" id="summary">
+          <div class="col-sm-8 text-right" id="confirmList">
+            <ul class="list-inline w-100">
+              <li class="list-inline-item px-2">
+                <img class="img-fluid border border-dark" src="images/toast.jpg" alt="French toast">
+                <h6 class="price">93.00 SEK</h6>
+              </li>
+              <li class="list-inline-item px-2">
+                <img class="img-fluid border border-dark" src="images/sourdough.jpg" alt="Sourdough Starter">
+                <h6 class="price">18.00 SEK</h6>
+              </li>
+            </ul>
+          </div>
+          <div class="col-sm-4 border-left border-dark">
+            <h6>Total:</h6>
+            <h6 class="price" id="totalPrice">111.00 SEK</h6>
+          </div>
+        </div>
 
+        <hr>
+        <div class="text-center">
+          <button class="btn btn-warning" onclick="window.location.href='print.html'">Print Full Recipie</button>
+        </div>
+      </div>
+
+    </div>
   </div>
 
   <!-- jQuery -->
