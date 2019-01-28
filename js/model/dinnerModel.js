@@ -105,9 +105,8 @@ var DinnerModel = function() {
       }
       //return dish.type == type && found;
       // TODO REENABLE TYPE FILTER ??
-      return found && type != "" ?
-        (dish.type == type) :
-        true;
+      return found &&
+        (type != "" ? dish.type == type : true );
     });
   };
 
