@@ -1,4 +1,11 @@
+var WelcomeView = function(container, model) {
+  // Confirm Dinner Button
+  this.createBtn = container.find("#createBtn");
 
-var WelcomeView = function (container, model) {
-
+  this.hide = function(index) {
+    container.hide();
+  };
+  this.show = function() {
+    container.show();
+  };
 };

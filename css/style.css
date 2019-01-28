@@ -44,6 +44,14 @@
   margin-right: -15px;
 }
 
+#ingredients ul{
+  padding: 0px;
+}
+
+#ingredients span{
+  padding: 0px;
+}
+
 #hamburger {
   display: grid;
   grid-template-columns: auto 35px;
@@ -75,7 +83,7 @@
     display: block;
   }
 
-  #totalPrice {
+  #totalPrice_collapse {
     display: none;
   }
 }

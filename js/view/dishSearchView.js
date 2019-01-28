@@ -14,12 +14,12 @@
  */
 var DishSearchView = function(container, model) {
 
-  var relativePath = "images/";
+  this.searchBtn = container.find("#searchBtn");
+  //var relativePath = "images/";
 
   //init the select of dish types
   var dishTypeSelect = container.find("#dishType")[0];
   var dishTypes = model.getAllDishTypes();
-
   for (var key in dishTypes) {
     var dishType = dishTypes[key];
     var el = document.createElement("option");
@@ -28,15 +28,18 @@ var DishSearchView = function(container, model) {
     dishTypeSelect.appendChild(el);
   }
 
-  //populate the list of dishes
-  var dishList = container.find("#dishList")[0];
-  var type = getParameterByName("dishType");
-  var search = getParameterByName("search");
-  search = search !== "undefined"
-    ? search
-    : false;
-  dishes = model.getAllDishes(type, search);
+  this.type = container.find("#dishType");
+  this.filter = container.find("#filter");
 
+
+  //populate the list of dishes
+  //var dishList = container.find("#dishList")[0];
+  //var type = getParameterByName("dishType");
+  //var filter = getParameterByName("filter");
+  //filter = filter !== "undefined" ? filter : false;
+  //dishes = model.getAllDishes(type, filter);
+
+  /*
   for (var key in dishes) {
     var dish = dishes[key];
 
@@ -56,17 +59,24 @@ var DishSearchView = function(container, model) {
     img.classList.add("border-dark");
     img.src = relativePath + dish.image;
     img.alt = dish.name;
-    img.style = "width:200px";
+    img.style = "width:200px;";
 
     var title = document.createElement("h5");
-    var t = document.createTextNode(dish.name);
+    //var t = document.createTextNode(dish.name);
 
-    title.appendChild(t);
+    title.innerHTML = dish.name;
     item.appendChild(img);
 		item.appendChild(title);
     dishList.appendChild(item);
   }
+  */
 
+  this.hide = function(index) {
+    container.hide();
+  }
+  this.show = function() {
+    container.show();
+  }
 };
 
 function getParameterByName(name) {
