@@ -4,11 +4,19 @@
 var DinnerModel = function () {
 
     let numberOfGuests = 1;
+    let selectedDishId = 0;
     let menu = [];
+
+    this.setSelectedDishId = function(id){
+        selectedDishId = id;
+    };
+
+    this.getSelectedDishId = function(){
+        return selectedDishId;
+    };
 
     this.setNumberOfGuests = function (num) {
         numberOfGuests = num;
-        console.log("Amount of guests is: " + num);
         this.notifyObservers();
     };
 
@@ -19,6 +27,17 @@ var DinnerModel = function () {
     //Returns all the dishes on the menu.
     this.getFullMenu = function () {
         return menu;
+    };
+
+    this.getDishPrice = function (id){
+        let dish = this.getDish(id);
+        let dishPrice = 0;
+
+        for (let key in dish.ingredients) {
+            dishPrice += dish.ingredients[key].price;
+        }
+
+        return dishPrice;
     };
 
     //Returns all ingredients for all the dishes on the menu.
@@ -381,7 +400,6 @@ var DinnerModel = function () {
 
     this.addObserver = function (observer) {
         this._observers.push(observer);
-        console.log(this._observers);
     };
 
     this.notifyObservers = function (arg) {

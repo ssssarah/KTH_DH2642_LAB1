@@ -1,7 +1,7 @@
-var PrintCtrl = function(view, model, gsc) {
+var PrintCtrl = function(printView, model, gsc) {
 
-  view.$backBtn.click(function() {
+  printView.$backBtn.click(function() {
     gsc.showSelectDishScreen();
   });
 
-}
+};

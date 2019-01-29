@@ -1,12 +1,12 @@
-var DishDetailsCtrl = function(view, model, gsc) {
-  view.$addToMenu.click(function() {
-    model.addDishToMenu(view.id);
-    gsc.showSelectDishScreen();
-    //model.addDishToMenu();
-  });
+var DishDetailsCtrl = function(dishDetailsView, model, gsc) {
 
-  view.$backBtn.click(function() {
+  dishDetailsView.$addToMenu.click(function() {
+    model.addDishToMenu(model.getSelectedDishId());
     gsc.showSelectDishScreen();
   });
 
-}
+  dishDetailsView.$backBtn.click(function() {
+    gsc.showSelectDishScreen();
+  });
+
+};

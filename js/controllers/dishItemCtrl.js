@@ -1,15 +1,14 @@
-let DishItemCtrl = function(view, model, gsc) {
+let DishItemCtrl = function(dishItemView, model, gsc) {
 
-  view.$dishList.find("button").click(function(e) {
+  dishItemView.$dishList.find("button").click(function(e) {
+    model.setSelectedDishId(e.currentTarget.id);
     gsc.showDishDetailsScreen(e.currentTarget.id);
   });
 
-  view.$dishList.on('DOMSubtreeModified', "", function() {
-    view.$dishList.find("button").click(function(e) {
+  dishItemView.$dishList.on('DOMSubtreeModified', "", function() {
+    dishItemView.$dishList.find("button").click(function(e) {
       gsc.showDishDetailsScreen(e.currentTarget.id);
     });
   });
-
-  //TODO change
 
 };

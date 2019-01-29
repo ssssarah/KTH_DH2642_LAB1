@@ -5,20 +5,14 @@ let DishDetailsView = function (container, model) {
     this.$backBtn = container.find("#dishDetail_backBtn");
     this.$ingredientList = container.find("#ingredientList");
     this.$price = container.find("#price");
-    this.id = null;
 
-    let numberOfGuests = 1;
-    let totalPrice = 0;
+    model.addObserver(this);
 
-    this.hide = function () {
-        container.hide();
-    };
+    this.show = function (){
+        let id = model.getSelectedDishId();
+        let dish = model.getDish(id);
 
-    this.show = function (dishId) {
-        container.show();
-        this.id = dishId;
-        let dish = model.getDish(dishId);
-        numberOfGuests = model.getNumberOfGuests();
+        let numberOfGuests = model.getNumberOfGuests();
         container.find("#dishName").text(dish.name);
         container.find("#dishImg").attr("src", relativePath + dish.image);
         container.find("#dishPrep").text(dish.description);
@@ -26,10 +20,10 @@ let DishDetailsView = function (container, model) {
 
         this.$ingredientList.empty();
 
-        totalPrice = 0;
+        let totalPrice = 0;
 
         for (let key in dish.ingredients) {
-            if(dish.ingredients.hasOwnProperty(key)){
+            if (dish.ingredients.hasOwnProperty(key)) {
 
                 let ingredient = dish.ingredients[key];
 
@@ -60,12 +54,20 @@ let DishDetailsView = function (container, model) {
                 item.appendChild(price);
 
                 this.$ingredientList.append(item);
-
             }
 
+            this.$price.text("SEK " + totalPrice.toFixed(2));
+            container.show();
         }
 
-        this.$price.text("SEK " + totalPrice.toFixed(2));
+    };
+
+    this.update = function () {
+        this.show();
+    };
+
+    this.hide = function () {
+        container.hide();
     };
 
 };

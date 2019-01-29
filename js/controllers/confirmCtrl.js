@@ -1,11 +1,11 @@
-var ConfirmCtrl = function(view, model, gsc) {
+var ConfirmCtrl = function(confirmView, model, gsc) {
 
-  view.$printBtn.click(function() {
+  confirmView.$printBtn.click(function() {
     gsc.showPrintScreen();
   });
 
-  view.$backBtn.click(function() {
+  confirmView.$backBtn.click(function() {
     gsc.showSelectDishScreen();
   });
 
-}
+};

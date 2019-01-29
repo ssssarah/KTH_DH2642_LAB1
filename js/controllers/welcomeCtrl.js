@@ -1,7 +1,7 @@
-var WelcomeCtrl = function(view, model, gsc) {
+var WelcomeCtrl = function(welcomeView, model, gsc) {
 
-  view.createBtn.click(function() {
+  welcomeView.createBtn.click(function() {
     gsc.showSelectDishScreen();
   });
   
-}
+};

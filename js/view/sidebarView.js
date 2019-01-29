@@ -4,21 +4,26 @@ var SidebarView = function (container, model) {
     this.$menu = container.find("#menu");
     this.$totalPrice = container.find("#sidebar_totalPrice");
     this.$totalPrice_collapse = container.find("#sidebar_totalPrice_collapse");
-    this.$confirmBtn = container.find("#confirmBftn");
+    this.$confirmBtn = container.find("#confirmBtn");
 
     // Register to listen for updates from the model.
     model.addObserver(this);
 
-    this.loadMenu = function () {
+    // The observer update function, triggered by the model when there are changes
+    this.update = function () {
 
         this.$menu.empty();
 
         let menuDishes = model.getFullMenu();
+        console.log(menuDishes);
 
         let list = document.createElement("ul");
         list.classList.add("list-unstyled");
 
         for (let key in menuDishes) {
+
+            let dish = menuDishes[key];
+            console.log(dish);
             let item = document.createElement("li");
             item.classList.add("row");
             item.classList.add("m-1");
@@ -30,12 +35,9 @@ var SidebarView = function (container, model) {
             title.classList.add("col-sm");
             title.classList.add("price");
             title.classList.add("text-uppercase");
-            title.innerHTML = menuDishes[key].name;
+            title.innerHTML = dish.name;
 
-            let dishPrice = 0;
-            for (let key2 in menuDishes[key].ingredients) {
-                dishPrice += menuDishes[key].ingredients[key2].price;
-            }
+            let dishPrice = model.getDishPrice(dish.id);
 
             let price = document.createElement("div");
             price.classList.add("col-sm");
@@ -54,11 +56,6 @@ var SidebarView = function (container, model) {
         let t = "SEK " + model.getTotalMenuPrice().toFixed(2);
         this.$totalPrice.text(t);
         this.$totalPrice_collapse.text(t);
-    };
-
-    // The observer update function, triggered by the model when there are changes
-    this.update = function () {
-        this.loadMenu();
     };
 
     this.hide = function (index) {
