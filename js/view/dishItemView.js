@@ -1,89 +1,52 @@
-
 var DishItemView = function (container, model) {
-  var relativePath = "images/";
-  var dishList = container.find("#dishList")[0];
-  this.dishList = container.find("#dishList");
+    const relativePath = "images/";
+    this.dishList = container.find("#dishList");
 
-  showDishes("", "");
-  
-  this.updateSearchResults = function(type, filter) {
-    while(dishList.firstChild) {
-      dishList.firstChild.remove();
-    }
-    showDishes(type, filter);
-    /*
-    var dishes = model.getAllDishes(type, filter);
-    for (var key in dishes) {
-      var dish = dishes[key];
+    this.showDishes = function (type = null, filter = null) {
+        let dishes = model.getAllDishes(type, filter);
+        for (let key in dishes) {
+            let dish = dishes[key];
 
-      var item = document.createElement("button");
-      item.id = dish.id;
-      item.classList.add("btn");
-      item.classList.add("wrapper");
-      item.classList.add("myBg");
-      item.classList.add("border");
-      item.classList.add("border-dark");
-      item.classList.add("mx-4");
-      item.classList.add("my-4");
+            let item = document.createElement("button");
+            item.id = dish.id;
+            item.classList.add("btn");
+            item.classList.add("wrapper");
+            item.classList.add("myBg");
+            item.classList.add("border");
+            item.classList.add("border-dark");
+            item.classList.add("mx-4");
+            item.classList.add("my-4");
 
-      //var item = document.createElement("div");
+            let img = document.createElement("img");
+            img.classList.add("border-bottom");
+            img.classList.add("border-dark");
+            img.src = relativePath + dish.image;
+            img.alt = dish.name;
+            img.style.width = "200px";
 
-      var img = document.createElement("img");
-      img.classList.add("border-bottom");
-      img.classList.add("border-dark");
-      img.src = relativePath + dish.image;
-      img.alt = dish.name;
-      img.style = "width:200px;";
+            let title = document.createElement("h6");
+            title.innerText = dish.name;
 
-      var title = document.createElement("h6");
-      //var t = document.createTextNode(dish.name);
+            item.appendChild(img);
+            item.appendChild(title);
 
-      title.innerHTML = dish.name;
-      item.appendChild(img);
-  		item.appendChild(title);
-      dishList.appendChild(item);
-    }
-    */
-  };
+            this.dishList.append(item);
+        }
+    };
 
-  function showDishes(type, filter) {
-    var dishes = model.getAllDishes(type, filter);
-    for (var key in dishes) {
-      var dish = dishes[key];
+    this.updateSearchResults = function (type, filter) {
+        this.dishList.empty();
+        this.showDishes(type, filter);
 
-      var item = document.createElement("button");
-      item.id = dish.id;
-      item.classList.add("btn");
-      item.classList.add("wrapper");
-      item.classList.add("myBg");
-      item.classList.add("border");
-      item.classList.add("border-dark");
-      item.classList.add("mx-4");
-      item.classList.add("my-4");
+    };
 
-      //var item = document.createElement("div");
+    this.hide = function (index) {
+        container.hide();
+    };
+    this.show = function () {
+        container.show();
+    };
 
-      var img = document.createElement("img");
-      img.classList.add("border-bottom");
-      img.classList.add("border-dark");
-      img.src = relativePath + dish.image;
-      img.alt = dish.name;
-      img.style = "width:200px;";
+    this.showDishes();
 
-      var title = document.createElement("h6");
-      //var t = document.createTextNode(dish.name);
-
-      title.innerHTML = dish.name;
-      item.appendChild(img);
-  		item.appendChild(title);
-      dishList.appendChild(item);
-    }
-  }
-
-  this.hide = function(index) {
-    container.hide();
-  };
-  this.show = function() {
-    container.show();
-  };
 };

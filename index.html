@@ -13,18 +13,15 @@
 </head>
 
 <header class="myBg">
-
   <div class="text-center pb-3 pt-3">
     <h1>Dinner planner</h1>
   </div>
-
 </header>
 
 <body>
   <div class="container-fluid">
 
     <div id="first-row" class="row no-gutters">
-
       <!-- Welcome Screen -->
       <div id="welcomeView" class="col-12">
         <div class="text-center">
@@ -76,8 +73,8 @@
       <div id="dishSearchView" class="col-md-10 py-2 px-4">
         <h5>FIND A DISH</h5>
         <div class="row">
-          <input id="filter" type="text" class="col-sm-3 mx-2 border border-secondary" name="filter" placeholder="Enter key words">
-          <select id="dishType" name="dishType" class="col-sm-3 mx-2 border border-secondary" title="Select a dish type">
+          <input id="filter" type="text" class="col-sm-3 mx-2 border border-secondary" placeholder="Enter key words">
+          <select id="dishType" class="col-sm-3 mx-2 border border-secondary" title="Select a dish type">
             <option value="">all</option>
           </select>
           <button id="searchBtn" class="col-sm-2 btn btn-warning mx-2">Search</button>
@@ -87,14 +84,7 @@
         <div class="d-flex flex-wrap" id="dishList"></div>
 
         <div id="dishItemView">
-          <div id="dishList" class="d-flex flex-wrap">
-          <!--
-          <button class="btn wrapper myBg border border-dark mx-4 my-4">
-            <img src="images/toast.jpg" alt="French toast" style="width: 200px" class="border-bottom border-dark">
-            <h6>French toast</h6>
-          </button>
-          -->
-          </div>
+          <div id="dishList" class="d-flex flex-wrap"></div>
         </div>
 
       </div>

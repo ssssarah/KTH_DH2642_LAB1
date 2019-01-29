@@ -1,33 +1,28 @@
 $(function() {
   //We instantiate our model
-  var model = new DinnerModel();
+    const model = new DinnerModel();
 
   // Create views and their controllers
-  var welcomeView = new WelcomeView($("#welcomeView"), model);
-  var welcomeCtrl = new WelcomeCtrl(welcomeView, model, this);
+  const welcomeView = new WelcomeView($("#welcomeView"), model);
+  const welcomeCtrl = new WelcomeCtrl(welcomeView, model, this);
 
-  var sidebarView = new SidebarView($("#sidebarView"), model);
-  var sidebarCtrl = new SidebarCtrl(sidebarView, model, this);
+  const sidebarView = new SidebarView($("#sidebarView"), model);
+  const sidebarCtrl = new SidebarCtrl(sidebarView, model, this);
 
-  var dishItemView = new DishItemView($("#dishItemView"), model);
-  var dishItemCtrl = new DishItemCtrl(dishItemView, model, this);
+  const dishItemView = new DishItemView($("#dishItemView"), model);
+  const dishItemCtrl = new DishItemCtrl(dishItemView, model, this);
 
-  var dishSearchView = new DishSearchView($("#dishSearchView"), model);
-  var dishSearchCtrl = new DishSearchCtrl(dishSearchView, model, this, dishItemView);
+  const dishSearchView = new DishSearchView($("#dishSearchView"), model);
+  const dishSearchCtrl = new DishSearchCtrl(dishSearchView, model, this, dishItemView);
 
-  var dishDetailsView = new DishDetailsView($("#dishDetailsView"), model);
-  var dishDetailsCtrl = new DishDetailsCtrl(dishDetailsView, model, this);
+  const dishDetailsView = new DishDetailsView($("#dishDetailsView"), model);
+  const dishDetailsCtrl = new DishDetailsCtrl(dishDetailsView, model, this);
 
-  var confirmView = new ConfirmView($("#confirmView"), model);
-  var confirmCtrl = new ConfirmCtrl(confirmView, model, this);
+  const confirmView = new ConfirmView($("#confirmView"), model);
+  const confirmCtrl = new ConfirmCtrl(confirmView, model, this);
 
-  var printView = new PrintView($("#printView"), model);
-  var printCtrl = new PrintCtrl(printView, model, this);
-
-
-
-  showWelcomeScreen();
-  //showDishDetailsScreen();
+  const printView = new PrintView($("#printView"), model);
+  const printCtrl = new PrintCtrl(printView, model, this);
 
   function showWelcomeScreen() {
     welcomeView.show();
@@ -47,7 +42,7 @@ $(function() {
     dishDetailsView.hide();
     confirmView.hide();
     printView.hide();
-  }
+  };
 
   this.showDishDetailsScreen = function showDishDetailsScreen(id) {
     welcomeView.hide();
@@ -57,7 +52,7 @@ $(function() {
     dishDetailsView.show(id);
     confirmView.hide();
     printView.hide();
-  }
+  };
 
   this.showConfirmScreen = function showConfirmScreen() {
     welcomeView.hide();
@@ -67,7 +62,7 @@ $(function() {
     dishDetailsView.hide();
     confirmView.show();
     printView.hide();
-  }
+  };
 
   this.showPrintScreen = function showPrintScreen() {
     welcomeView.hide();
@@ -77,6 +72,8 @@ $(function() {
     dishDetailsView.hide();
     confirmView.hide();
     printView.show();
-  }
+  };
+
+  showWelcomeScreen();
 
 });

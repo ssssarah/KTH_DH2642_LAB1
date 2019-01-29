@@ -35,7 +35,8 @@ var SelectDishView = function(container, model) {
   search = search !== "undefined"
     ? search
     : false;
-  dishes = model.getAllDishes(type, search);
+  var dishes = model.getAllDishes(type, search);
+  console.log(dishes);
 
   for (var key in dishes) {
     var dish = dishes[key];

@@ -9,7 +9,7 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="../../css/style.css">
 
 </head>
 
@@ -30,7 +30,7 @@
         <div id="hamburger" class="m-2">
           <span class="font-weight-bold align-middle">My Dinner</span>
           <a id="hamburger_icon" data-toggle="collapse" href=".multi-collapse" role="button" aria-expanded="false" aria-controls="hamburger_content totalPrice">
-            <img src="images/Hamburger_icon.png" alt="Hamburger" style="width:35px;">
+            <img src="../../images/Hamburger_icon.png" alt="Hamburger" style="width:35px;">
           </a>
         </div>
         <h5 id="totalPrice" class="m-2 text-right price collapse show multi-collapse">SEK 0.00</h5>
@@ -92,10 +92,17 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
   <!-- The application JavaScript code -->
-  <script src="js/model/dinnerModel.js"></script>
-  <script src="js/view/dishSearchView.js"></script>
-  <script src="js/view/sidebarView.js"></script>
-  <script src="js/app.js"></script>
+  <script src="../model/dinnerModel.js"></script>
+
+  <script src="../view/dishSearchView.js"></script>
+  <script src="../view/welcomeView.js"></script>
+  <script src="../view/dishItemView.js"></script>
+  <script src="../view/sidebarView.js"></script>
+
+  <script src="../controllers/welcomeCtrl.js"></script>
+  <script src="../controllers/sidebarCtrl.js"></script>
+
+  <script src="../app.js"></script>
 
 
 </body>
