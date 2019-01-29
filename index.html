@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dinner planner</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<header class="myBg">
+
+  <div class="text-center pb-3 pt-3">
+    <h1>Dinner planner</h1>
+  </div>
+
+</header>
+
+<body>
+  <div class="container-fluid">
+
+    <div id="first-row" class="row no-gutters">
+
+      <!-- Welcome Screen -->
+      <div id="welcomeView" class="col-12">
+        <div class="text-center">
+          <p class="mx-auto my-5 w-50 y-25">
+            Lorem ipsum dolor sit amet, in suas delectus pri, at his graece tractatos. Ludus consulatu in his,
+            in pri ludus partiendo, ius an saepe molestiae. Omnium omittam appetere eu vix, nobis legimus offendit et has.
+            Constituto cotidieque est an. Nam adipiscing eloquentiam delicatissimi et, nominati quaerendum cotidieque ut nec.
+            Per dicunt albucius id, id debitis molestiae est, vel id eripuit nusquam.
+          </p>
+
+          <button id="createBtn" class="btn btn-warning">Create new dinner</button>
+
+        </div>
+      </div>
+
+      <!-- Sidebar for dish search and dish details screen -->
+      <div id="sidebarView" class="col-md-2 border border-dark">
+        <div id="hamburger" class="m-2">
+          <span class="font-weight-bold align-middle">My Dinner</span>
+          <a id="hamburger_icon" data-toggle="collapse" href=".multi-collapse" role="button" aria-expanded="false" aria-controls="hamburger_content totalPrice">
+            <img src="images/Hamburger_icon.png" alt="Hamburger" style="width:35px;">
+          </a>
+        </div>
+        <h5 id="totalPrice_collapse" class="m-2 text-right price collapse show multi-collapse">SEK 0.00</h5>
+        <div id="hamburger_content" class="collapse multi-collapse my-2">
+          <div class="form-group row">
+            <label class="col-sm col-form-label m-2" for="numberOfGuests">People</label>
+            <div class="col-sm m-2">
+              <input id="numberOfGuests" type="number" class="form-control" min="1" value="1">
+            </div>
+          </div>
+
+          <div class="myBg my-1 small box px-2">
+            <div>Dish Name</div>
+            <div>Cost</div>
+          </div>
+
+          <div id="menu" class="mt-1 mb-3">
+          </div>
+
+          <h5 id="totalPrice" class="text-right m-2 price">SEK 0.00</h5>
+          <div class="text-center">
+            <button id="confirmBtn" class="btn btn-warning btn-sm">Confirm Dinner</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dish search -->
+      <div id="dishSearchView" class="col-md-10 py-2 px-4">
+        <h5>FIND A DISH</h5>
+        <div class="row">
+          <input id="filter" type="text" class="col-sm-3 mx-2 border border-secondary" name="filter" placeholder="Enter key words">
+          <select id="dishType" name="dishType" class="col-sm-3 mx-2 border border-secondary" title="Select a dish type">
+            <option value="">all</option>
+          </select>
+          <button id="searchBtn" class="col-sm-2 btn btn-warning mx-2">Search</button>
+        </div>
+        <br>
+
+        <div class="d-flex flex-wrap" id="dishList"></div>
+
+        <div id="dishItemView">
+          <div id="dishList" class="d-flex flex-wrap">
+          <!--
+          <button class="btn wrapper myBg border border-dark mx-4 my-4">
+            <img src="images/toast.jpg" alt="French toast" style="width: 200px" class="border-bottom border-dark">
+            <h6>French toast</h6>
+          </button>
+          -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Dish details -->
+      <div id="dishDetailsView" class="col-md-10">
+        <div class="row">
+          <div class="col-sm px-4 py-2" id="recipie">
+            <h2 id="dishName" class="text-uppercase">French toast</h2>
+            <img id="dishImg" src="images/toast.jpg" alt="French toast" class="img-fluid bigImage">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+              ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+              laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+            <button id="backBtn" class="btn btn-warning btn-sm my-3">back to search</button>
+
+            <h3 class="text-uppercase">Preperation</h3>
+            <p id="dishPrep">In a large mixing bowl, beat the eggs. Add the milk, brown sugar and nutmeg;
+              stir well to combine. Soak bread slices in the egg mixture until saturated.
+              Heat a lightly oiled griddle or frying pan over medium high heat. Brown
+              slices on both sides, sprinkle with cinnamon and serve hot.</p>
+          </div>
+
+          <div class="col-sm">
+            <div class="border border-dark p-3" id="ingredients">
+              <h4 class="text-uppercase">Ingredients for <span id="numberOfGuests">1</span> people</h4>
+              <hr>
+              <ul id="ingredientList">
+                <!--<li class="row">
+                  <span class="col-2">2 tsp</span>
+                  <span class="col-6">olive oil</span>
+                  <span class="col-2">SEK</span>
+                  <span class="col-2">0.20</span>
+                </li>-->
+              </ul>
+              <hr>
+              <div class="box">
+                <button id="addToMenu" class="btn btn-warning btn-sm">Add to menu</button>
+                <h6 id="price">SEK 0.00</h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Confirm screen -->
+      <div id="confirmView" class="col-12">
+        <div class="row p-3 border-bottom border-dark mb-2">
+          <div class="col-sm" id="amount">
+            <h3>My Dinner: <span>3 people</span></h3>
+          </div>
+          <div class="col-sm" id="goBack">
+            <button id="backBtn" class="btn btn-warning btn-sm">Go back and edit dinner</button>
+          </div>
+        </div>
+        <div class="row m-3" id="summary">
+          <div class="col-sm-8 text-right" id="confirmList">
+            <ul class="list-inline w-100">
+              <li class="list-inline-item px-2">
+                <img class="img-fluid border border-dark" src="images/toast.jpg" alt="French toast">
+                <h6 class="price">93.00 SEK</h6>
+              </li>
+              <li class="list-inline-item px-2">
+                <img class="img-fluid border border-dark" src="images/sourdough.jpg" alt="Sourdough Starter">
+                <h6 class="price">18.00 SEK</h6>
+              </li>
+            </ul>
+          </div>
+          <div class="col-sm-4 border-left border-dark">
+            <h6>Total:</h6>
+            <h6 class="price" id="totalPrice">111.00 SEK</h6>
+          </div>
+        </div>
+
+        <hr>
+        <div class="text-center">
+          <button id="printBtn" class="btn btn-warning">Print Full Recipie</button>
+        </div>
+      </div>
+
+      <!-- Print screen -->
+      <div id="printView" class="col-12">
+        <div class="row p-3 border-bottom border-dark mb-2">
+          <div class="col-sm" id="amount">
+            <h3>My Dinner: 3 people</h3>
+          </div>
+          <div class="col-sm" id="goBack">
+            <button id="backBtn" class="btn btn-warning btn-sm">Go back and edit dinner</button>
+          </div>
+        </div>
+
+        <div>
+          <ul id="printMenu" class="list-unstyled w-100 my-4">
+            <li>
+              <div class="row ml-2 mr-4 mb-3">
+                <div class="col-sm-2">
+                  <img class="img-fluid border border-dark bigImage" src="images/toast.jpg" alt="French toast">
+                </div>
+                <div class="col-sm-4">
+                  <h3 class="text-uppercase">French toast</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+                <div class="col-sm-6">
+                  <h5 class="text-uppercase">Preperation</h5>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                    dolore eu fugiat nulla pariatur.</p>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="row ml-2 mr-4 mb-3">
+                <div class="col-sm-2">
+                  <img class="img-fluid border border-dark bigImage" src="images/sourdough.jpg" alt="Sourdough Starter">
+                </div>
+                <div class="col-sm-4">
+                  <h3 class="text-uppercase">Sourdough Starter</h3>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+                <div class="col-sm-6">
+                  <h5 class="text-uppercase">Preperation</h5>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+                    dolore eu fugiat nulla pariatur.</p>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <script src="js/model/dinnerModel.js"></script>
+  <script src="js/view/welcomeView.js"></script>
+  <script src="js/view/sidebarView.js"></script>
+  <script src="js/view/dishSearchView.js"></script>
+  <script src="js/view/dishItemView.js"></script>
+  <script src="js/view/dishDetailsView.js"></script>
+  <script src="js/view/confirmView.js"></script>
+  <script src="js/view/printView.js"></script>
+  <script src="js/controllers/welcomeCtrl.js"></script>
+  <script src="js/controllers/sidebarCtrl.js"></script>
+  <script src="js/controllers/dishSearchCtrl.js"></script>
+  <script src="js/controllers/dishItemCtrl.js"></script>
+  <script src="js/controllers/dishDetailsCtrl.js"></script>
+  <script src="js/controllers/confirmCtrl.js"></script>
+  <script src="js/controllers/printCtrl.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+
+</html>

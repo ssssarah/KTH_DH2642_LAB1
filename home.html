@@ -1,45 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <title>Dinner planner</title>
 
-    <!-- Bootstrap CSS -->
-	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-			integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  </head>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dinner planner</title>
 
-  <header class="myBg">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
 
-	  <div class="text-center pb-3 pt-3">
-		  <h1>Dinner planner</h1>
-	  </div>
+<header class="myBg">
 
-  </header>
+  <div class="text-center pb-3 pt-3">
+    <h1>Dinner planner</h1>
+  </div>
 
-  <body>
-	<div class="container">
-		<div class="text-center">
-			<p class="mx-auto my-5 w-50 y-25">
-				Lorem ipsum dolor sit amet, in suas delectus pri, at his graece tractatos. Ludus consulatu in his,
-				in pri ludus partiendo, ius an saepe molestiae. Omnium omittam appetere eu vix, nobis legimus offendit et has.
-				Constituto cotidieque est an. Nam adipiscing eloquentiam delicatissimi et, nominati quaerendum cotidieque ut nec.
-				Per dicunt albucius id, id debitis molestiae est, vel id eripuit nusquam.
-			</p>
+</header>
 
-			<a href="selectDish.html" class="btn btn-warning">Create new dinner</a>
+<body>
+  <div class="container-fluid">
 
-		</div>
-	</div>
+    <div id="first-row" class="row no-gutters">
 
-    <!-- jQuery -->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
-    	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+      <div id="welcomeView" class="col-12">
+        <div class="text-center">
+          <p class="mx-auto my-5 w-50 y-25">
+            Lorem ipsum dolor sit amet, in suas delectus pri, at his graece tractatos. Ludus consulatu in his,
+            in pri ludus partiendo, ius an saepe molestiae. Omnium omittam appetere eu vix, nobis legimus offendit et has.
+            Constituto cotidieque est an. Nam adipiscing eloquentiam delicatissimi et, nominati quaerendum cotidieque ut nec.
+            Per dicunt albucius id, id debitis molestiae est, vel id eripuit nusquam.
+          </p>
 
-  </body>
+          <a href="selectDish.html" class="btn btn-warning">Create new dinner</a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <script src="js/model/dinnerModel.js"></script>
+  <script src="js/view/welcomeView.js"></script>
+  <script src="js/view/sidebarView.js"></script>
+  <script src="js/view/dishSearchView.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+
 </html>

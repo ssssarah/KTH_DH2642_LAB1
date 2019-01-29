@@ -5,11 +5,11 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="css/style.css">
   <title>Dinner planner</title>
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
 
 </head>
 
@@ -24,47 +24,60 @@
 <body>
   <div class="container-fluid">
 
-    <div class="row">
+    <div id="first-row" class="row no-gutters">
 
-      <div id="sidebarView" class="col-sm-2 border border-dark">
+      <div id="sidebarView" class="col-md-2 border border-dark">
         <div id="hamburger" class="m-2">
-          <span class="font-weight-bold align-midle">My Dinner</span>
-          <img id="hamburger_icon" src="images/Hamburger_icon.png" alt="Hamburger">
+          <span class="font-weight-bold align-middle">My Dinner</span>
+          <a id="hamburger_icon" data-toggle="collapse" href=".multi-collapse" role="button" aria-expanded="false" aria-controls="hamburger_content totalPrice">
+            <img src="images/Hamburger_icon.png" alt="Hamburger" style="width:35px;">
+          </a>
         </div>
-        <div id="hamburger_content">
+        <h5 id="totalPrice" class="m-2 text-right price collapse show multi-collapse">SEK 93.00</h5>
+        <div id="hamburger_content" class="collapse multi-collapse my-2">
           <form>
             <div class="form-group row">
-              <label class="col-sm col-form-label" for="numberOfGuests">People</label>
-              <div class="col-sm">
+              <label class="col-sm col-form-label m-2" for="numberOfGuests">People</label>
+              <div class="col-sm m-2">
                 <input type="number" class="form-control" id="numberOfGuests" value="1">
               </div>
             </div>
           </form>
 
-          <div class="myBg my-1 small box">
+          <div class="myBg my-1 small box px-2">
             <div>Dish Name</div>
             <div>Cost</div>
           </div>
 
           <div id="menu" class="mt-1 mb-3">
             <ul class="list-unstyled">
-              <li>
-                <div class="row m-1 myBg border border-dark">
-                  <div class="col-sm price text-uppercase">French toast</div>
-                  <div class="col-sm price text-right">93.00 SEK</div>
-                </div>
+              <li class="row m-1 myBg border border-dark">
+                <div class="col-sm price text-uppercase">French toast</div>
+                <div class="col-sm price text-right">93.00 SEK</div>
+              </li>
+              <li class="row m-1 myBg border border-dark">
+                <div class="col-sm price text-uppercase">French toast</div>
+                <div class="col-sm price text-right">93.00 SEK</div>
+              </li>
+              <li class="row m-1 myBg border border-dark">
+                <div class="col-sm price text-uppercase">French toast</div>
+                <div class="col-sm price text-right">93.00 SEK</div>
+              </li>
+              <li class="row m-1 myBg border border-dark">
+                <div class="col-sm price text-uppercase">French toast</div>
+                <div class="col-sm price text-right">93.00 SEK</div>
               </li>
             </ul>
           </div>
 
-          <h5 class="text-right price">SEK 0.00</h5>
+          <h5 class="text-right m-2 price">SEK 93.00</h5>
           <div class="text-center">
             <button class="btn btn-warning btn-sm" onclick="window.location.href='confirm.html'">Confirm Dinner</button>
           </div>
         </div>
       </div>
 
-      <div id="selectDishView" class="col-sm-10">
+      <div id="dishSearchView" class="col-md-10 py-2 px-4">
         <h5>FIND A DISH</h5>
         <form class="form-inline">
           <input type="text" class="form-control mx-2" name="search" placeholder="Enter key words">
@@ -73,10 +86,19 @@
           </select>
           <button class="btn btn-warning mx-2">Search</button>
         </form>
-
         <br>
 
-        <div class="row" id="dishList"></div>
+        <div class="row" id="dishList">
+
+        </div>
+
+        <div class="d-flex flex-wrap">
+          <div class="wrapper myBg border border-dark mx-2 my-2">
+            <img src="images/toast.jpg" alt="French toast" style="width: 120px" class="border border-dark">
+            <h5>French toast</h5>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -89,26 +111,9 @@
 
   <!-- The application JavaScript code -->
   <script src="js/model/dinnerModel.js"></script>
-  <script src="js/view/selectDish.js"></script>
+  <script src="js/view/dishSearchView.js"></script>
   <script src="js/view/sidebarView.js"></script>
   <script src="js/app.js"></script>
-
-  <script>
-    (function() {
-      var hamburger = document.getElementById('hamburger_icon');
-      var hamburger_content = document.getElementById('hamburger_content');
-      hamburger.addEventListener('click', function(e) {
-        if (hamburger_content.style.display == "block") {
-          hamburger_content.style.display = "none";
-        } else {
-
-          hamburger_content.style.display = "block";
-        }
-        e.preventDefault();
-      });
-    })();
-  </script>
-
 
 
   <!-- TODO: Here you should include JS code for your other views -->
