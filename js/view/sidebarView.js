@@ -17,9 +17,6 @@ var SidebarView = function (container, model) {
         let menuDishes = model.getFullMenu();
         console.log(menuDishes);
 
-        let list = document.createElement("ul");
-        list.classList.add("list-unstyled");
-
         for (let key in menuDishes) {
 
             let dish = menuDishes[key];
@@ -48,17 +45,15 @@ var SidebarView = function (container, model) {
 
             item.appendChild(title);
             item.appendChild(price);
-            list.appendChild(item);
+            this.$menu.append(item);
         }
-
-        this.$menu.append(list);
 
         let t = "SEK " + model.getTotalMenuPrice().toFixed(2);
         this.$totalPrice.text(t);
         this.$totalPrice_collapse.text(t);
     };
 
-    this.hide = function (index) {
+    this.hide = function() {
         container.hide();
     };
     this.show = function () {

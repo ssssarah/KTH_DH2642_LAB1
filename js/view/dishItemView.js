@@ -1,5 +1,5 @@
 var DishItemView = function (container, model) {
-    const relativePath = "images/";
+
     this.$dishList = container.find("#dishList");
 
     this.showDishes = function (type = null, filter = null) {
@@ -23,7 +23,7 @@ var DishItemView = function (container, model) {
             let img = document.createElement("img");
             img.classList.add("border-bottom");
             img.classList.add("border-dark");
-            img.src = relativePath + dish.image;
+            img.src = model.relativePath + dish.image;
             img.alt = dish.name;
             img.style.width = "200px";
 
@@ -37,7 +37,7 @@ var DishItemView = function (container, model) {
         }
     };
 
-    this.hide = function (index) {
+    this.hide = function() {
         container.hide();
     };
     this.show = function () {

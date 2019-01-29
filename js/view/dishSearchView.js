@@ -3,7 +3,7 @@ var DishSearchView = function (container, model) {
     this.$filterInput = container.find("#filter");
     this.$searchBtn = container.find("#searchBtn");
 
-    this.hide = function (index) {
+    this.hide = function() {
         container.hide();
     };
 

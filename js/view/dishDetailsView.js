@@ -1,5 +1,5 @@
 let DishDetailsView = function (container, model) {
-    let relativePath = "images/";
+
 
     this.$addToMenu = container.find("#addToMenu");
     this.$backBtn = container.find("#dishDetail_backBtn");
@@ -14,7 +14,7 @@ let DishDetailsView = function (container, model) {
 
         let numberOfGuests = model.getNumberOfGuests();
         container.find("#dishName").text(dish.name);
-        container.find("#dishImg").attr("src", relativePath + dish.image);
+        container.find("#dishImg").attr("src", model.relativePath + dish.image);
         container.find("#dishPrep").text(dish.description);
         container.find("#dishDetail_numberOfGuests").text(numberOfGuests);
 

@@ -3,6 +3,8 @@
  */
 var DinnerModel = function () {
 
+    this.relativePath = "images/";
+
     let numberOfGuests = 1;
     let selectedDishId = 0;
     let menu = [];

@@ -5,8 +5,6 @@ var ConfirmView = function (container, model) {
     this.$confirmList = container.find("#confirm_dishList");
     this.$totalPrice = container.find("#confirm_totalPrice");
 
-    let relativePath = "images/";
-
     // Register to listen for updates from the model.
     model.addObserver(this);
 
@@ -29,7 +27,7 @@ var ConfirmView = function (container, model) {
             img.classList.add("border");
             img.classList.add("border-dark");
 
-            img.setAttribute("src", relativePath + dish.image);
+            img.setAttribute("src", model.relativePath + dish.image);
             img.setAttribute("alt", dish.name);
 
             let price = document.createElement("h6");
@@ -47,7 +45,7 @@ var ConfirmView = function (container, model) {
         this.$numberOfGuests.text(model.getNumberOfGuests());
     };
 
-    this.hide = function (index) {
+    this.hide = function() {
         container.hide();
     };
 
