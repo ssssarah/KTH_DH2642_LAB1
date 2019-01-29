@@ -1,8 +1,11 @@
 var DishItemView = function (container, model) {
     const relativePath = "images/";
-    this.dishList = container.find("#dishList");
+    this.$dishList = container.find("#dishList");
 
     this.showDishes = function (type = null, filter = null) {
+
+        this.$dishList.empty();
+
         let dishes = model.getAllDishes(type, filter);
         for (let key in dishes) {
             let dish = dishes[key];
@@ -30,14 +33,8 @@ var DishItemView = function (container, model) {
             item.appendChild(img);
             item.appendChild(title);
 
-            this.dishList.append(item);
+            this.$dishList.append(item);
         }
-    };
-
-    this.updateSearchResults = function (type, filter) {
-        this.dishList.empty();
-        this.showDishes(type, filter);
-
     };
 
     this.hide = function (index) {

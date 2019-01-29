@@ -71,7 +71,7 @@
     min-height: 100%;
   }
 
-  #goBack {
+  .goBack {
     text-align: right;
   }
 
@@ -89,11 +89,11 @@
 }
 
 @media (max-width:768px) {
-  #amount {
+  .amount {
     text-align: center;
   }
 
-  #goBack {
+  .goBack {
     text-align: center;
   }
 }

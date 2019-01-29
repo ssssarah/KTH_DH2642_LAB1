@@ -1,66 +1,70 @@
-
 var SidebarView = function (container, model) {
 
-	this.numberOfGuests = container.find("#numberOfGuests");
+    this.$numberOfGuests = container.find("#sidebar_numberOfGuests");
+    this.$menu = container.find("#menu");
+    this.$totalPrice = container.find("#sidebar_totalPrice");
+    this.$totalPrice_collapse = container.find("#sidebar_totalPrice_collapse");
+    this.$confirmBtn = container.find("#confirmBftn");
 
-	var menu = container.find("#menu")[0];
-	var totalPrice = container.find("#totalPrice")[0];
-	var totalPrice_collapse = container.find("#totalPrice_collapse")[0];
+    // Register to listen for updates from the model.
+    model.addObserver(this);
 
-	this.confirmBtn = container.find("#confirmBtn");
+    this.loadMenu = function () {
 
-	// Register to listen for updates from the model.
-	model.addObserver(this);
+        this.$menu.empty();
 
-	var loadMenu = function() {
-		while(menu.firstChild) {
-			menu.firstChild.remove();
-		}
-		var menuDishes = model.getFullMenu();
-		var list = document.createElement("ul");
-		list.classList.add("list-unstyled");
-		for (key in menuDishes) {
-			var item = document.createElement("li");
-			item.classList.add("row");
-			item.classList.add("m-1");
-			item.classList.add("myBg");
-			item.classList.add("border");
-			item.classList.add("border-dark");
-			var title = document.createElement("div");
-			title.classList.add("col-sm");
-			title.classList.add("price");
-			title.classList.add("text-uppercase");
-			title.innerHTML = menuDishes[key].name;
-			var dishPrice = 0;
-			for (key2 in menuDishes[key].ingredients) {
-				dishPrice += menuDishes[key].ingredients[key2].price;
-			}
-			var price = document.createElement("div");
-			price.classList.add("col-sm");
-			price.classList.add("price");
-			price.classList.add("text-right");
-			dishPrice *= model.getNumberOfGuests();
-			price.innerHTML = dishPrice.toFixed(2);
-			item.appendChild(title);
-			item.appendChild(price);
-			list.appendChild(item);
-		}
-		menu.appendChild(list);
+        let menuDishes = model.getFullMenu();
 
-		var t = "SEK " + model.getTotalMenuPrice().toFixed(2);
-		totalPrice.innerHTML = t;
-		totalPrice_collapse.innerHTML = t;
-	};
+        let list = document.createElement("ul");
+        list.classList.add("list-unstyled");
 
-	// The observer update function, triggered by the model when there are changes
-	this.update = function() {
-		loadMenu();
-	};
+        for (let key in menuDishes) {
+            let item = document.createElement("li");
+            item.classList.add("row");
+            item.classList.add("m-1");
+            item.classList.add("myBg");
+            item.classList.add("border");
+            item.classList.add("border-dark");
 
-	this.hide = function(index) {
-    container.hide();
-  };
-  this.show = function() {
-    container.show();
-  };
+            let title = document.createElement("div");
+            title.classList.add("col-sm");
+            title.classList.add("price");
+            title.classList.add("text-uppercase");
+            title.innerHTML = menuDishes[key].name;
+
+            let dishPrice = 0;
+            for (let key2 in menuDishes[key].ingredients) {
+                dishPrice += menuDishes[key].ingredients[key2].price;
+            }
+
+            let price = document.createElement("div");
+            price.classList.add("col-sm");
+            price.classList.add("price");
+            price.classList.add("text-right");
+            dishPrice *= model.getNumberOfGuests();
+            price.innerHTML = dishPrice.toFixed(2);
+
+            item.appendChild(title);
+            item.appendChild(price);
+            list.appendChild(item);
+        }
+
+        this.$menu.append(list);
+
+        let t = "SEK " + model.getTotalMenuPrice().toFixed(2);
+        this.$totalPrice.text(t);
+        this.$totalPrice_collapse.text(t);
+    };
+
+    // The observer update function, triggered by the model when there are changes
+    this.update = function () {
+        this.loadMenu();
+    };
+
+    this.hide = function (index) {
+        container.hide();
+    };
+    this.show = function () {
+        container.show();
+    };
 };

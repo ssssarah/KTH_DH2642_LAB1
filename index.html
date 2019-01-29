@@ -19,23 +19,24 @@
 </header>
 
 <body>
+
   <div class="container-fluid">
 
-    <div id="first-row" class="row no-gutters">
-      <!-- Welcome Screen -->
-      <div id="welcomeView" class="col-12">
-        <div class="text-center">
-          <p class="mx-auto my-5 w-50 y-25">
-            Lorem ipsum dolor sit amet, in suas delectus pri, at his graece tractatos. Ludus consulatu in his,
-            in pri ludus partiendo, ius an saepe molestiae. Omnium omittam appetere eu vix, nobis legimus offendit et has.
-            Constituto cotidieque est an. Nam adipiscing eloquentiam delicatissimi et, nominati quaerendum cotidieque ut nec.
-            Per dicunt albucius id, id debitis molestiae est, vel id eripuit nusquam.
-          </p>
-
-          <button id="createBtn" class="btn btn-warning">Create new dinner</button>
-
-        </div>
+    <!-- Welcome Screen -->
+    <div id="welcomeView">
+      <div class="text-center">
+        <p class="mx-auto my-5 w-50 y-25">
+          Lorem ipsum dolor sit amet, in suas delectus pri, at his graece tractatos. Ludus consulatu in his,
+          in pri ludus partiendo, ius an saepe molestiae. Omnium omittam appetere eu vix, nobis legimus offendit et has.
+          Constituto cotidieque est an. Nam adipiscing eloquentiam delicatissimi et, nominati quaerendum cotidieque ut nec.
+          Per dicunt albucius id, id debitis molestiae est, vel id eripuit nusquam.
+        </p>
+        <button id="createBtn" class="btn btn-warning">Create new dinner</button>
       </div>
+    </div>
+    <!-- Welcome Screen -->
+
+    <div id="first-row" class="row no-gutters">
 
       <!-- Sidebar for dish search and dish details screen -->
       <div id="sidebarView" class="col-md-2 border border-dark">
@@ -45,14 +46,15 @@
             <img src="images/Hamburger_icon.png" alt="Hamburger" style="width:35px;">
           </a>
         </div>
-        <h5 id="totalPrice_collapse" class="m-2 text-right price collapse show multi-collapse">SEK 0.00</h5>
+        <h5 id="sidebar_totalPrice_collapse" class="m-2 text-right price collapse show multi-collapse">SEK 0.00</h5>
         <div id="hamburger_content" class="collapse multi-collapse my-2">
           <div class="form-group row">
-            <label class="col-sm col-form-label m-2" for="numberOfGuests">People</label>
+            <label class="col-sm col-form-label m-2" for="sidebar_numberOfGuests">People</label>
             <div class="col-sm m-2">
-              <input id="numberOfGuests" type="number" class="form-control" min="1" value="1">
+              <input id="sidebar_numberOfGuests" type="number" class="form-control" min="1" value="1">
             </div>
           </div>
+
 
           <div class="myBg my-1 small box px-2">
             <div>Dish Name</div>
@@ -62,12 +64,15 @@
           <div id="menu" class="mt-1 mb-3">
           </div>
 
-          <h5 id="totalPrice" class="text-right m-2 price">SEK 0.00</h5>
+          <h5 id="sidebar_totalPrice" class="text-right m-2 price">SEK 0.00</h5>
           <div class="text-center">
             <button id="confirmBtn" class="btn btn-warning btn-sm">Confirm Dinner</button>
           </div>
         </div>
       </div>
+      <!-- Sidebar for dish search and dish details screen -->
+
+
 
       <!-- Dish search -->
       <div id="dishSearchView" class="col-md-10 py-2 px-4">
@@ -81,13 +86,12 @@
         </div>
         <br>
 
-        <div class="d-flex flex-wrap" id="dishList"></div>
-
         <div id="dishItemView">
           <div id="dishList" class="d-flex flex-wrap"></div>
         </div>
 
       </div>
+      <!-- Dish search -->
 
       <!-- Dish details -->
       <div id="dishDetailsView" class="col-md-10">
@@ -99,7 +103,7 @@
               ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
               laboris nisi ut aliquip ex ea commodo consequat.</p>
 
-            <button id="backBtn" class="btn btn-warning btn-sm my-3">back to search</button>
+            <button id="dishDetail_backBtn" class="btn btn-warning btn-sm my-3">back to search</button>
 
             <h3 class="text-uppercase">Preperation</h3>
             <p id="dishPrep">In a large mixing bowl, beat the eggs. Add the milk, brown sugar and nutmeg;
@@ -110,34 +114,30 @@
 
           <div class="col-sm">
             <div class="border border-dark p-3" id="ingredients">
-              <h4 class="text-uppercase">Ingredients for <span id="numberOfGuests">1</span> people</h4>
-              <hr>
-              <ul id="ingredientList">
-                <!--<li class="row">
-                  <span class="col-2">2 tsp</span>
-                  <span class="col-6">olive oil</span>
-                  <span class="col-2">SEK</span>
-                  <span class="col-2">0.20</span>
-                </li>-->
-              </ul>
-              <hr>
+
+              <h4 class="text-uppercase">Ingredients for <span id="dishDetail_numberOfGuests"></span> people</h4>
+
+              <hr><ul id="ingredientList"></ul><hr>
+
               <div class="box">
                 <button id="addToMenu" class="btn btn-warning btn-sm">Add to menu</button>
                 <h6 id="price">SEK 0.00</h6>
               </div>
+
             </div>
           </div>
         </div>
       </div>
+      <!-- Dish details -->
 
       <!-- Confirm screen -->
       <div id="confirmView" class="col-12">
         <div class="row p-3 border-bottom border-dark mb-2">
-          <div class="col-sm" id="amount">
+          <div class="col-sm amount" id="confirm_amount">
             <h3>My Dinner: <span>3 people</span></h3>
           </div>
-          <div class="col-sm" id="goBack">
-            <button id="backBtn" class="btn btn-warning btn-sm">Go back and edit dinner</button>
+          <div class="col-sm goBack">
+            <button id="confirm_backBtn" class="btn btn-warning btn-sm">Go back and edit dinner</button>
           </div>
         </div>
         <div class="row m-3" id="summary">
@@ -155,24 +155,26 @@
           </div>
           <div class="col-sm-4 border-left border-dark">
             <h6>Total:</h6>
-            <h6 class="price" id="totalPrice">111.00 SEK</h6>
+            <h6 class="price" id="confirm_totalPrice">111.00 SEK</h6>
           </div>
         </div>
 
         <hr>
         <div class="text-center">
-          <button id="printBtn" class="btn btn-warning">Print Full Recipie</button>
+          <button id="printBtn" class="btn btn-warning">Print Full Recipe</button>
         </div>
+
       </div>
+      <!-- Confirm screen -->
 
       <!-- Print screen -->
       <div id="printView" class="col-12">
         <div class="row p-3 border-bottom border-dark mb-2">
-          <div class="col-sm" id="amount">
+          <div class="col-sm amount" id="print_amount">
             <h3>My Dinner: 3 people</h3>
           </div>
-          <div class="col-sm" id="goBack">
-            <button id="backBtn" class="btn btn-warning btn-sm">Go back and edit dinner</button>
+          <div class="col-sm goBack">
+            <button id="print_backBtn" class="btn btn-warning btn-sm">Go back and edit dinner</button>
           </div>
         </div>
 
@@ -229,6 +231,8 @@
           </ul>
         </div>
       </div>
+      <!-- Print screen -->
+
 
     </div>
   </div>

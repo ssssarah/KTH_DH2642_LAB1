@@ -1,11 +1,11 @@
-var SidebarCtrl = function(view, model, gsc) {
+var SidebarCtrl = function(sideBarView, model, gsc) {
 
-  view.confirmBtn.click(function() {
+  sideBarView.$confirmBtn.click(function() {
     gsc.showConfirmScreen();
   });
 
-  view.numberOfGuests.change(function() {
-    model.setNumberOfGuests(view.numberOfGuests.val());
+  sideBarView.$numberOfGuests.change(function(event) {
+    model.setNumberOfGuests(event.target.value);
   });
 
-}
+};

@@ -1,6 +1,6 @@
 var ConfirmView = function (container, model) {
-  this.backBtn = container.find("#backBtn");
-  this.printBtn = container.find("#printBtn");
+  this.$backBtn = container.find("#confirm_backBtn");
+  this.$printBtn = container.find("#printBtn");
 
   // Register to listen for updates from the model.
 	model.addObserver(this);
@@ -8,6 +8,7 @@ var ConfirmView = function (container, model) {
 	var loadMenu = function() {
 
 	};
+
 	// The observer update function, triggered by the model when there are changes
 	this.update = function() {
 		loadMenu();
