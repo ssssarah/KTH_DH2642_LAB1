@@ -1,6 +1,5 @@
 let DishDetailsView = function (container, model) {
 
-
     this.$addToMenu = container.find("#addToMenu");
     this.$backBtn = container.find("#dishDetail_backBtn");
     this.$ingredientList = container.find("#ingredientList");

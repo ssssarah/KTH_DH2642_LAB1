@@ -10,8 +10,8 @@
 }
 
 .row {
-  margin-right: 0px;
-  margin-left: 0px;
+  margin-right: 0;
+  margin-left: 0;
 }
 
 #first-row {
@@ -45,11 +45,11 @@
 }
 
 #ingredients ul{
-  padding: 0px;
+  padding: 0;
 }
 
 #ingredients span{
-  padding: 0px;
+  padding: 0;
 }
 
 #hamburger {

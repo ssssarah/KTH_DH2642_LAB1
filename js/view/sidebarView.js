@@ -10,7 +10,7 @@ var SidebarView = function (container, model) {
     model.addObserver(this);
 
     // The observer update function, triggered by the model when there are changes
-    this.update = function () {
+    this.update = function() {
 
         this.$menu.empty();
 
@@ -20,8 +20,9 @@ var SidebarView = function (container, model) {
         for (let key in menuDishes) {
 
             let dish = menuDishes[key];
-            console.log(dish);
-            let item = document.createElement("li");
+
+            let item = document.createElement("button");
+            item.setAttribute("data-id", dish.id);
             item.classList.add("row");
             item.classList.add("m-1");
             item.classList.add("myBg");

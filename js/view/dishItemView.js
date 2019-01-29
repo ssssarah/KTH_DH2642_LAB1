@@ -11,7 +11,7 @@ var DishItemView = function (container, model) {
             let dish = dishes[key];
 
             let item = document.createElement("button");
-            item.id = dish.id;
+            item.setAttribute("data-id", dish.id);
             item.classList.add("btn");
             item.classList.add("wrapper");
             item.classList.add("myBg");
