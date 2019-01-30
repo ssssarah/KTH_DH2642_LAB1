@@ -21,14 +21,18 @@ var PrintView = function (container, model) {
             li.classList.add("mr-4");
             li.classList.add("mb-3");
 
+            let divImg = document.createElement("div");
+            divImg.classList.add("col-sm-2");
+
             let img = document.createElement("img");
             img.setAttribute("src", model.relativePath + dish.image);
             img.setAttribute("alt", dish.name);
-            img.classList.add("col-sm-2");
             img.classList.add("img-fluid");
+            img.classList.add("bigImage");
             img.classList.add("border");
             img.classList.add("border-dark");
-            img.classList.add("big-Image");
+
+            divImg.appendChild(img);
 
             let divDesc = document.createElement("div");
             divDesc.classList.add("col-sm-4");
@@ -58,7 +62,7 @@ var PrintView = function (container, model) {
             divPrep.appendChild(h5);
             divPrep.appendChild(span);
 
-            li.appendChild(img);
+            li.appendChild(divImg);
             li.appendChild(divDesc);
             li.appendChild(divPrep);
 
