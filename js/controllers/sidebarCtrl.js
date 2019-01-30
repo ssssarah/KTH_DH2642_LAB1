@@ -4,12 +4,11 @@ var SidebarCtrl = function (sideBarView, model, gsc) {
         gsc.showConfirmScreen();
     });
 
-    sideBarView.$numberOfGuests.change(function (event) {
+    sideBarView.$numberOfGuests.on("input", function (event) {
         model.setNumberOfGuests(event.target.value);
     });
 
     sideBarView.$menu.on("click", "a", function (e) {
-        console.log(e.currentTarget.getAttribute("data-id"));
         model.setSelectedDishId(e.currentTarget.getAttribute("data-id"));
         gsc.showDishDetailsScreen(e.currentTarget.getAttribute("data-id"));
     });

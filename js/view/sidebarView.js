@@ -15,7 +15,6 @@ var SidebarView = function (container, model) {
         this.$menu.empty();
 
         let menuDishes = model.getFullMenu();
-        console.log(menuDishes);
 
         for (let key in menuDishes) {
 
