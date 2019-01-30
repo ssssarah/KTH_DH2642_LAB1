@@ -21,7 +21,7 @@ var SidebarView = function (container, model) {
 
             let dish = menuDishes[key];
 
-            let item = document.createElement("button");
+            let item = document.createElement("a");
             item.setAttribute("data-id", dish.id);
             item.classList.add("row");
             item.classList.add("m-1");

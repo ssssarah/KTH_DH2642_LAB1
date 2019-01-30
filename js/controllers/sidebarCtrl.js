@@ -8,7 +8,7 @@ var SidebarCtrl = function (sideBarView, model, gsc) {
         model.setNumberOfGuests(event.target.value);
     });
 
-    sideBarView.$menu.on("click", "button", function (e) {
+    sideBarView.$menu.on("click", "a", function (e) {
         console.log(e.currentTarget.getAttribute("data-id"));
         model.setSelectedDishId(e.currentTarget.getAttribute("data-id"));
         gsc.showDishDetailsScreen(e.currentTarget.getAttribute("data-id"));
