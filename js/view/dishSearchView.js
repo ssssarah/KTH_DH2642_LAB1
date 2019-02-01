@@ -12,7 +12,7 @@ var DishSearchView = function (container, model) {
     };
 
     //init the select of dish types
-    let dishTypes = model.getAllDishTypes();
+    let dishTypes = model.dishTypes;
     for (let key in dishTypes) {
         let dishType = dishTypes[key];
         let el = document.createElement("option");
