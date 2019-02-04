@@ -6,19 +6,31 @@ var SidebarView = function (container, model) {
     this.$totalPrice_collapse = container.find("#sidebar_totalPrice_collapse");
     this.$confirmBtn = container.find("#confirmBtn");
 
-    // Register to listen for updates from the model.
     model.addObserver(this);
 
-    // The observer update function, triggered by the model when there are changes
     this.update = function() {
 
         this.$menu.empty();
 
+        let self = this;
         let menuDishes = model.getFullMenu();
+        let promises = menuDishes.map((id) => this.addItemToMenu(id));
 
-        for (let key in menuDishes) {
+        Promise.all(promises).then(function(){
 
-            let dish = menuDishes[key];
+            let t = "SEK " + model.getTotalMenuPrice().toFixed(2);
+            self.$totalPrice.text(t);
+            self.$totalPrice_collapse.text(t);
+
+        });
+
+    };
+
+    this.addItemToMenu = function (id){
+
+        let self = this;
+
+        return model.getDish(id).then(function(dish) {
 
             let item = document.createElement("a");
             item.setAttribute("data-id", dish.id);
@@ -32,7 +44,7 @@ var SidebarView = function (container, model) {
             title.classList.add("col-sm");
             title.classList.add("price");
             title.classList.add("text-uppercase");
-            title.innerHTML = dish.name;
+            title.innerHTML = dish.title;
 
             let dishPrice = model.getDishPrice(dish.id);
 
@@ -45,12 +57,9 @@ var SidebarView = function (container, model) {
 
             item.appendChild(title);
             item.appendChild(price);
-            this.$menu.append(item);
-        }
+            self.$menu.append(item);
 
-        let t = "SEK " + model.getTotalMenuPrice().toFixed(2);
-        this.$totalPrice.text(t);
-        this.$totalPrice_collapse.text(t);
+        });
     };
 
     this.hide = function() {

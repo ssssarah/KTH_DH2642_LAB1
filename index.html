@@ -10,11 +10,18 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/loader.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+
 </head>
 
 
 <body>
+
+<div id="loader">
+    <div class="lds-roller"><div></div><div></div><div></div><div></div>
+        <div></div><div></div><div></div><div></div></div>
+</div>
 
 <header class="myBg text-center pb-3 pt-3">
     <h1>Dinner planner</h1>
@@ -26,7 +33,9 @@
     <div id="welcomeView">
         <div class="text-center">
             <p class="mx-auto my-5 w-50 y-25">
-                Lorem ipsum dolor sit amet, in suas delectus pri, at his graece tractatos. Ludus consulatu in his,
+
+
+            Lorem ipsum dolor sit amet, in suas delectus pri, at his graece tractatos. Ludus consulatu in his,
                 in pri ludus partiendo, ius an saepe molestiae. Omnium omittam appetere eu vix, nobis legimus offendit
                 et has.
                 Constituto cotidieque est an. Nam adipiscing eloquentiam delicatissimi et, nominati quaerendum
@@ -213,6 +222,7 @@
 <script src="js/view/dishDetailsView.js"></script>
 <script src="js/view/confirmView.js"></script>
 <script src="js/view/printView.js"></script>
+<script src="js/controllers/generalCtrl.js"></script>
 <script src="js/controllers/welcomeCtrl.js"></script>
 <script src="js/controllers/sidebarCtrl.js"></script>
 <script src="js/controllers/dishSearchCtrl.js"></script>

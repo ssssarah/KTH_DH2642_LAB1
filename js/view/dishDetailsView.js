@@ -5,59 +5,64 @@ let DishDetailsView = function (container, model) {
     this.$ingredientList = container.find("#ingredientList");
     this.$price = container.find("#price");
 
+    let self = this;
     model.addObserver(this);
 
-    this.show = function (){
+    this.show = function () {
+
         let id = model.getSelectedDishId();
-        let dish = model.getDish(id);
 
-        let numberOfGuests = model.getNumberOfGuests();
-        container.find("#dishName").text(dish.name);
-        container.find("#dishImg").attr("src", model.relativePath + dish.image);
-        container.find("#dishPrep").text(dish.description);
-        container.find("#dishDetail_numberOfGuests").text(numberOfGuests);
+        model.getDish(id).then(function (dish) {
 
-        this.$ingredientList.empty();
+            let numberOfGuests = model.getNumberOfGuests();
+            container.find("#dishName").text(dish.title);
+            container.find("#dishImg").attr("src", dish.image);
+            container.find("#dishPrep").text(dish.instructions);
+            container.find("#dishDetail_numberOfGuests").text(numberOfGuests);
 
-        let totalPrice = 0;
+            self.$ingredientList.empty();
 
-        for (let key in dish.ingredients) {
-            if (dish.ingredients.hasOwnProperty(key)) {
+            let totalPrice = 0;
 
-                let ingredient = dish.ingredients[key];
+            /*for (let key in dish.ingredients) {
+                if (dish.ingredients.hasOwnProperty(key)) {
 
-                let item = document.createElement("li");
-                item.classList.add("row");
+                    let ingredient = dish.ingredients[key];
 
-                let quantity = document.createElement("span");
-                quantity.classList.add("col-2");
-                quantity.innerHTML = ingredient.quantity + " " + ingredient.unit;
+                    let item = document.createElement("li");
+                    item.classList.add("row");
 
-                let name = document.createElement("span");
-                name.classList.add("col-6");
-                name.innerHTML = ingredient.name;
+                    let quantity = document.createElement("span");
+                    quantity.classList.add("col-2");
+                    quantity.innerHTML = ingredient.quantity + " " + ingredient.unit;
 
-                let currency = document.createElement("span");
-                currency.classList.add("col-2");
-                currency.innerHTML = "SEK";
+                    let name = document.createElement("span");
+                    name.classList.add("col-6");
+                    name.innerHTML = ingredient.name;
 
-                let price = document.createElement("span");
-                price.classList.add("col-2");
-                price.innerHTML = (ingredient.price * numberOfGuests).toFixed(2);
+                    let currency = document.createElement("span");
+                    currency.classList.add("col-2");
+                    currency.innerHTML = "SEK";
 
-                totalPrice += ingredient.price * numberOfGuests;
+                    let price = document.createElement("span");
+                    price.classList.add("col-2");
+                    price.innerHTML = (ingredient.price * numberOfGuests).toFixed(2);
 
-                item.appendChild(quantity);
-                item.appendChild(name);
-                item.appendChild(currency);
-                item.appendChild(price);
+                    totalPrice += ingredient.price * numberOfGuests;
 
-                this.$ingredientList.append(item);
-            }
+                    item.appendChild(quantity);
+                    item.appendChild(name);
+                    item.appendChild(currency);
+                    item.appendChild(price);
 
-            this.$price.text("SEK " + totalPrice.toFixed(2));
-            container.show();
-        }
+                    self.$ingredientList.append(item);
+                }}*/
+
+                self.$price.text("SEK " + totalPrice.toFixed(2));
+                container.show();
+
+        });
+
 
     };
 

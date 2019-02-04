@@ -1,7 +1,7 @@
 var WelcomeCtrl = function(welcomeView, model, gsc) {
 
   welcomeView.createBtn.click(function() {
-    gsc.showSelectDishScreen();
+    gsc.showScreen("DISH_SEARCH");
   });
   
 };

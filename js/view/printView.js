@@ -9,11 +9,17 @@ var PrintView = function (container, model) {
     this.show = function () {
 
         this.$printMenu.empty();
-
         let menu = model.getFullMenu();
 
-        for (let key in menu) {
-            let dish = menu[key];
+        Promise.all(menu.map(id => this.addItemToPrint(id))).then(function(){
+            container.show();
+        });
+    };
+
+    this.addItemToPrint = function(id){
+
+        let self = this;
+        return model.getDish(id).then(function(dish){
 
             let li = document.createElement("li");
             li.classList.add("row");
@@ -25,8 +31,8 @@ var PrintView = function (container, model) {
             divImg.classList.add("col-sm-2");
 
             let img = document.createElement("img");
-            img.setAttribute("src", model.relativePath + dish.image);
-            img.setAttribute("alt", dish.name);
+            img.setAttribute("src", dish.image);
+            img.setAttribute("alt", dish.title);
             img.classList.add("img-fluid");
             img.classList.add("bigImage");
             img.classList.add("border");
@@ -39,7 +45,7 @@ var PrintView = function (container, model) {
 
             let h3 = document.createElement("h3");
             h3.classList.add("text-uppercase");
-            h3.innerText = dish.name;
+            h3.innerText = dish.title;
 
             let p = document.createElement("p");
             p.innerText =  "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor " +
@@ -57,7 +63,7 @@ var PrintView = function (container, model) {
             h5.innerText = "Preparation";
 
             let span = document.createElement("span");
-            span.innerText = dish.description;
+            span.innerText = dish.instructions;
 
             divPrep.appendChild(h5);
             divPrep.appendChild(span);
@@ -66,10 +72,11 @@ var PrintView = function (container, model) {
             li.appendChild(divDesc);
             li.appendChild(divPrep);
 
-            this.$printMenu.append(li);
-        }
-        container.show();
-    };
+            self.$printMenu.append(li);
+
+        });
+
+    }
 
 };
 
