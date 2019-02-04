@@ -1,7 +1,7 @@
 var SidebarCtrl = function (sideBarView, model, gsc) {
 
     sideBarView.$confirmBtn.click(function () {
-        gsc.showConfirmScreen();
+        gsc.showScreen("CONFIRM");
     });
 
     sideBarView.$numberOfGuests.on("input", function (event) {
@@ -10,7 +10,7 @@ var SidebarCtrl = function (sideBarView, model, gsc) {
 
     sideBarView.$menu.on("click", "a", function (e) {
         model.setSelectedDishId(e.currentTarget.getAttribute("data-id"));
-        gsc.showDishDetailsScreen(e.currentTarget.getAttribute("data-id"));
+        gsc.showScreen("DISH_DETAILS");
     });
 
 };

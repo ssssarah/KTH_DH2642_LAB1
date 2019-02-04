@@ -1,79 +1,44 @@
-$(function() {
-  //We instantiate our model
+$(function () {
+
     const model = new DinnerModel();
+    const generalController = new GeneralController();
 
-  // Create views and their controllers
-  const welcomeView = new WelcomeView($("#welcomeView"), model);
-  const welcomeCtrl = new WelcomeCtrl(welcomeView, model, this);
+    // Create views and their controllers
+    const welcomeView = new WelcomeView($("#welcomeView"), model);
+    const welcomeCtrl = new WelcomeCtrl(welcomeView, model, generalController);
 
-  const sidebarView = new SidebarView($("#sidebarView"), model);
-  const sidebarCtrl = new SidebarCtrl(sidebarView, model, this);
+    const sidebarView = new SidebarView($("#sidebarView"), model);
+    const sidebarCtrl = new SidebarCtrl(sidebarView, model, generalController);
 
-  const dishItemView = new DishItemView($("#dishItemView"), model);
-  const dishItemCtrl = new DishItemCtrl(dishItemView, model, this);
+    const dishItemView = new DishItemView($("#dishItemView"), model);
+    const dishItemCtrl = new DishItemCtrl(dishItemView, model, generalController);
 
-  const dishSearchView = new DishSearchView($("#dishSearchView"), model);
-  const dishSearchCtrl = new DishSearchCtrl(dishSearchView, model, this, dishItemView);
+    const dishSearchView = new DishSearchView($("#dishSearchView"), model);
+    const dishSearchCtrl = new DishSearchCtrl(dishSearchView, model, generalController, dishItemView);
 
-  const dishDetailsView = new DishDetailsView($("#dishDetailsView"), model);
-  const dishDetailsCtrl = new DishDetailsCtrl(dishDetailsView, model, this);
+    const dishDetailsView = new DishDetailsView($("#dishDetailsView"), model);
+    const dishDetailsCtrl = new DishDetailsCtrl(dishDetailsView, model, generalController);
 
-  const confirmView = new ConfirmView($("#confirmView"), model);
-  const confirmCtrl = new ConfirmCtrl(confirmView, model, this);
+    const confirmView = new ConfirmView($("#confirmView"), model);
+    const confirmCtrl = new ConfirmCtrl(confirmView, model, generalController);
 
-  const printView = new PrintView($("#printView"), model);
-  const printCtrl = new PrintCtrl(printView, model, this);
+    const printView = new PrintView($("#printView"), model);
+    const printCtrl = new PrintCtrl(printView, model, generalController);
 
-  function showWelcomeScreen() {
-    welcomeView.show();
-    sidebarView.hide();
-    dishSearchView.hide();
-    dishItemView.hide();
-    dishDetailsView.hide();
-    confirmView.hide();
-    printView.hide();
-  }
+    generalController.addView(welcomeView);
+    generalController.addView(sidebarView);
+    generalController.addView(dishSearchView);
+    generalController.addView(dishDetailsView);
+    generalController.addView(confirmView);
+    generalController.addView(printView);
 
-  this.showSelectDishScreen = function showSelectDishScreen() {
-    welcomeView.hide();
-    sidebarView.show();
-    dishSearchView.show();
-    dishItemView.show();
-    dishDetailsView.hide();
-    confirmView.hide();
-    printView.hide();
-  };
+    generalController.addScreen('WELCOME', [welcomeView]);
+    generalController.addScreen('CONFIRM', [confirmView]);
+    generalController.addScreen('SELECT_DISH', [sidebarView, dishSearchView, dishItemView]);
+    generalController.addScreen('DISH_DETAILS', [sidebarView, dishDetailsView]);
+    generalController.addScreen('PRINT', [printView]);
 
-  this.showDishDetailsScreen = function showDishDetailsScreen(id) {
-    welcomeView.hide();
-    sidebarView.show();
-    dishSearchView.hide();
-    dishItemView.hide();
-    dishDetailsView.show(id);
-    confirmView.hide();
-    printView.hide();
-  };
-
-  this.showConfirmScreen = function showConfirmScreen() {
-    welcomeView.hide();
-    sidebarView.hide();
-    dishSearchView.hide();
-    dishItemView.hide();
-    dishDetailsView.hide();
-    confirmView.show();
-    printView.hide();
-  };
-
-  this.showPrintScreen = function showPrintScreen() {
-    welcomeView.hide();
-    sidebarView.hide();
-    dishSearchView.hide();
-    dishItemView.hide();
-    dishDetailsView.hide();
-    confirmView.hide();
-    printView.show();
-  };
-
-  showWelcomeScreen();
+    generalController.showScreen("WELCOME");
 
 });
+
