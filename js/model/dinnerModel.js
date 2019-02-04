@@ -5,9 +5,15 @@ var DinnerModel = function () {
 
     this.relativePath = "https://webknox.com/recipeImages/";
 
+    this.dishTypes = [
+        "main course", "side dish", "dessert", "appetizer", "salad",
+        "bread", "breakfast", "soup", "beverage", "sauce", "drink"
+    ];
+
     let numberOfGuests = 1;
     let selectedDishId = 0;
     let menu = [];
+
 
     this.setSelectedDishId = function(id){
         selectedDishId = id;
@@ -31,7 +37,10 @@ var DinnerModel = function () {
         return menu;
     };
 
-    this.getDishPrice = function (id){
+    this.getDishPrice = function(id){return 0;}; //TODO
+    this.getTotalMenuPrice = function(){return 0}; //TODO
+
+    /*this.getDishPrice = function (id){
         let dish = this.getDish(id);
         let dishPrice = 0;
 
@@ -40,10 +49,10 @@ var DinnerModel = function () {
         }
 
         return dishPrice;
-    };
+    };*/
 
     //Returns all ingredients for all the dishes on the menu.
-    this.getAllIngredients = function () {
+    /*this.getAllIngredients = function () {
         let ingredients = [];
         for (let key in menu) {
             let dishIngredients = menu[key].ingredients;
@@ -59,41 +68,31 @@ var DinnerModel = function () {
             }
         }
         return ingredients;
-    };
+    };*/
 
     //Returns the total price of the menu (all the ingredients multiplied by number of guests).
-    this.getTotalMenuPrice = function () {
+    /*this.getTotalMenuPrice = function () {
         let price = 0;
         let allIngredients = this.getAllIngredients();
         for (let key in allIngredients) {
             price += allIngredients[key].price;
         }
         return price * numberOfGuests;
-    };
+    };*/
 
     //Adds the passed dish to the menu. If the dish of that type already exists on the menu
     //it is removed from the menu and the new one added.
     this.addDishToMenu = function (id) {
-        let dish = this.getDish(id);
-        if (menu.findIndex(item =>  item.id == id) != -1) {
-            this.removeDishFromMenu(id);
-        }
-        menu.push(dish);
+        this.removeDishFromMenu(id);
+        menu.push(id);
         this.notifyObservers();
-        // if (dish != null)
-        //   menu.push(dish);
     };
 
     //Removes dish from menu
     this.removeDishFromMenu = function (id) {
-        for (let key in menu) {
-            if (menu[key].id == id) {
-                menu.splice(key, 1);
-                return;
-            }
-        }
+        if(index = menu.indexOf(id) != -1)
+            menu.splice(index, 1);
     };
-
 
     function handleHTTPError(response) {
         if(response.ok)
@@ -109,8 +108,12 @@ var DinnerModel = function () {
         return ret;
     };
 
+    /**
+     *
+     * @param params
+     * @returns {Promise<>}
+     */
     this.getAllDishes = function(params){
-
         let url = new URL("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search");
         url.search = new URLSearchParams(params).toString();
 
@@ -123,36 +126,22 @@ var DinnerModel = function () {
     };
 
 
-    /*this.getDish = function(id){
+    /**
+     *
+     * @param id
+     * @returns {Promise<>}
+     */
+    this.getDish = function(id){
 
-        return fetch("https://api.imgur.com/3/image", {
+        let url = `https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/${id}/information`;
+
+        return fetch(url, {
             method: "GET",
-            body: createFormData({id: id}),
             headers: authHeader
         })
             .then(handleHTTPError)
             .then(response => response.json());
-    };*/
-
-
-    this.dishTypes = [
-        "main course", "side dish", "dessert", "appetizer", "salad",
-        "bread", "breakfast", "soup", "beverage", "sauce", "drink"
-    ];
-
-    this.cuisine = [
-        "african", "chinese", "japanese", "korean", "vietnamese", "thai", "indian", "british", "irish",
-        "french", "italian", "mexican", "spanish", "middle eastern", "jewish", "american", "cajun",
-        "southern", "greek", "german", "nordic", "eastern european", "caribbean", "latin american"
-    ];
-
-    this.diet = [
-        "pescetarian", "lacto vegetarian", "ovo vegetarian", "vegan", "vegetarian"
-    ];
-
-    this.intolerance = [
-        "dairy", "egg", "gluten", "peanut", "sesame", "seafood", "shellfish", "soy", "sulfite", "tree nut", "wheat"
-    ];
+    };
 
     /*****************************************
      Observable implementation

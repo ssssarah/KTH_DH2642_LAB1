@@ -25,6 +25,8 @@ $(function () {
     const printView = new PrintView($("#printView"), model);
     const printCtrl = new PrintCtrl(printView, model, generalController);
 
+
+
     generalController.addView(welcomeView);
     generalController.addView(sidebarView);
     generalController.addView(dishSearchView);
@@ -34,7 +36,7 @@ $(function () {
 
     generalController.addScreen('WELCOME', [welcomeView]);
     generalController.addScreen('CONFIRM', [confirmView]);
-    generalController.addScreen('SELECT_DISH', [sidebarView, dishSearchView, dishItemView]);
+    generalController.addScreen('DISH_SEARCH', [sidebarView, dishSearchView, dishItemView]);
     generalController.addScreen('DISH_DETAILS', [sidebarView, dishDetailsView]);
     generalController.addScreen('PRINT', [printView]);
 

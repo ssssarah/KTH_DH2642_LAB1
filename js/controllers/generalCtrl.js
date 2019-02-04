@@ -4,7 +4,6 @@ var GeneralController = function() {
 
     this.hideAll = function(){
         for(let key in this.views){
-            console.log(this.views[key]);
             this.views[key].hide();
         }
     };
@@ -17,10 +16,16 @@ var GeneralController = function() {
         this.screens[name] = viewsToShow;
     };
 
+    this.showLoader = function(){
+        $("#loader").show();
+    };
+
+    this.hideLoader = function(){
+        $("#loader").hide();
+    };
+
     this.showScreen = function(name) {
         this.hideAll();
-        for(let key in this.screens[name]){
-            this.screens[name][key].show();
-        }
+        return Promise.all(this.screens[name].map(screen => screen.show()));
     };
 };

@@ -1,12 +1,22 @@
-var DishDetailsCtrl = function(dishDetailsView, model, gsc) {
+var DishDetailsCtrl = function (dishDetailsView, model, gsc) {
 
-  dishDetailsView.$addToMenu.click(function() {
-    model.addDishToMenu(model.getSelectedDishId());
-    gsc.showScreen("SELECT_DISH");
-  });
+    dishDetailsView.$addToMenu.click(function () {
+        model.addDishToMenu(model.getSelectedDishId());
 
-  dishDetailsView.$backBtn.click(function() {
-    gsc.showScreen("SELECT_DISH");
-  });
+        gsc.showLoader();
+        gsc.showScreen("DISH_SEARCH").then(function () {
+            gsc.hideLoader();
+        });
+
+    });
+
+    dishDetailsView.$backBtn.click(function () {
+
+        gsc.showLoader();
+        gsc.showScreen("DISH_SEARCH").then(function () {
+            gsc.hideLoader();
+        });
+
+    });
 
 };

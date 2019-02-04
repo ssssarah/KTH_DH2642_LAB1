@@ -17,7 +17,7 @@ var DishItemView = function (container, model) {
             params["query"] = filter;
         }
 
-        model.getAllDishes(params).then(function(dishes) {
+        return model.getAllDishes(params).then(function(dishes) {
 
             dishes = dishes.results;
 
