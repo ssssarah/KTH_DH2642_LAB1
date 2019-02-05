@@ -13,6 +13,7 @@ let DishDetailsView = function (container, model) {
         let id = model.getSelectedDishId();
 
         model.getDish(id).then(function (dish) {
+            model.setSelectedDish(dish);
 
             let numberOfGuests = model.getNumberOfGuests();
             container.find("#dishName").text(dish.title);
@@ -24,42 +25,38 @@ let DishDetailsView = function (container, model) {
 
             let totalPrice = 0;
 
-            /*for (let key in dish.ingredients) {
-                if (dish.ingredients.hasOwnProperty(key)) {
+            for(let key in dish.extendedIngredients) {
+              let ingredient = dish.extendedIngredients[key];
 
-                    let ingredient = dish.ingredients[key];
+              let item = document.createElement("li");
+              item.classList.add("row");
 
-                    let item = document.createElement("li");
-                    item.classList.add("row");
+              let quantity = document.createElement("span");
+              quantity.classList.add("col-2");
+              quantity.innerHTML = ingredient.amount + " " + ingredient.unit;
 
-                    let quantity = document.createElement("span");
-                    quantity.classList.add("col-2");
-                    quantity.innerHTML = ingredient.quantity + " " + ingredient.unit;
+              let name = document.createElement("span");
+              name.classList.add("col-6");
+              name.innerHTML = ingredient.name;
 
-                    let name = document.createElement("span");
-                    name.classList.add("col-6");
-                    name.innerHTML = ingredient.name;
+              let currency = document.createElement("span");
+              currency.classList.add("col-2");
+              currency.innerHTML = "SEK";
 
-                    let currency = document.createElement("span");
-                    currency.classList.add("col-2");
-                    currency.innerHTML = "SEK";
+              let price = document.createElement("span");
+              price.classList.add("col-2");
+              price.innerHTML = (1 * numberOfGuests).toFixed(2);
 
-                    let price = document.createElement("span");
-                    price.classList.add("col-2");
-                    price.innerHTML = (ingredient.price * numberOfGuests).toFixed(2);
+              item.appendChild(quantity);
+              item.appendChild(name);
+              item.appendChild(currency);
+              item.appendChild(price);
 
-                    totalPrice += ingredient.price * numberOfGuests;
+              self.$ingredientList.append(item);
+            }
 
-                    item.appendChild(quantity);
-                    item.appendChild(name);
-                    item.appendChild(currency);
-                    item.appendChild(price);
-
-                    self.$ingredientList.append(item);
-                }}*/
-
-                self.$price.text("SEK " + totalPrice.toFixed(2));
-                container.show();
+            self.$price.text("SEK " + model.getDishPrice(dish).toFixed(2));
+            container.show();
 
         });
 

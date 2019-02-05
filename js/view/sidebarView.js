@@ -12,54 +12,38 @@ var SidebarView = function (container, model) {
 
         this.$menu.empty();
 
-        let self = this;
-        let menuDishes = model.getFullMenu();
-        let promises = menuDishes.map((id) => this.addItemToMenu(id));
+        let dishes = model.getFullMenu();
+        for(let key in dishes) {
+          let dish = dishes[key];
+          let item = document.createElement("a");
+          item.setAttribute("data-id", dish.id);
+          item.classList.add("row");
+          item.classList.add("m-1");
+          item.classList.add("myBg");
+          item.classList.add("border");
+          item.classList.add("border-dark");
 
-        Promise.all(promises).then(function(){
+          let title = document.createElement("div");
+          title.classList.add("col-sm");
+          title.classList.add("price");
+          title.classList.add("text-uppercase");
+          title.innerHTML = dish.title;
 
-            let t = "SEK " + model.getTotalMenuPrice().toFixed(2);
-            self.$totalPrice.text(t);
-            self.$totalPrice_collapse.text(t);
+          let price = document.createElement("div");
+          price.classList.add("col-sm");
+          price.classList.add("price");
+          price.classList.add("text-right");
+          price.innerHTML = model.getDishPrice(dish).toFixed(2);
 
-        });
+          item.appendChild(title);
+          item.appendChild(price);
+          this.$menu.append(item);
+        }
 
-    };
+        let t = "SEK " + model.getTotalMenuPrice().toFixed(2);
+        this.$totalPrice.text(t);
+        this.$totalPrice_collapse.text(t);
 
-    this.addItemToMenu = function (id){
-
-        let self = this;
-
-        return model.getDish(id).then(function(dish) {
-
-            let item = document.createElement("a");
-            item.setAttribute("data-id", dish.id);
-            item.classList.add("row");
-            item.classList.add("m-1");
-            item.classList.add("myBg");
-            item.classList.add("border");
-            item.classList.add("border-dark");
-
-            let title = document.createElement("div");
-            title.classList.add("col-sm");
-            title.classList.add("price");
-            title.classList.add("text-uppercase");
-            title.innerHTML = dish.title;
-
-            let dishPrice = model.getDishPrice(dish.id);
-
-            let price = document.createElement("div");
-            price.classList.add("col-sm");
-            price.classList.add("price");
-            price.classList.add("text-right");
-            dishPrice *= model.getNumberOfGuests();
-            price.innerHTML = dishPrice.toFixed(2);
-
-            item.appendChild(title);
-            item.appendChild(price);
-            self.$menu.append(item);
-
-        });
     };
 
     this.hide = function() {

@@ -1,7 +1,7 @@
 var DishDetailsCtrl = function (dishDetailsView, model, gsc) {
 
     dishDetailsView.$addToMenu.click(function () {
-        model.addDishToMenu(model.getSelectedDishId());
+        model.addDishToMenu();
 
         gsc.showLoader();
         gsc.showScreen("DISH_SEARCH").then(function () {

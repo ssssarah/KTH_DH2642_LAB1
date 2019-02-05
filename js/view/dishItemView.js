@@ -40,7 +40,7 @@ var DishItemView = function (container, model) {
                 img.alt = dish.title;
                 img.style.width = "200px";
 
-                let title = document.createElement("h6");
+                let title = document.createElement("div");
                 title.innerText = dish.title;
 
                 item.appendChild(img);
@@ -50,7 +50,6 @@ var DishItemView = function (container, model) {
             }
 
         });
-
 
     };
 

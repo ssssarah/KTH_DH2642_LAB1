@@ -12,8 +12,16 @@ var DinnerModel = function () {
 
     let numberOfGuests = 1;
     let selectedDishId = 0;
+    let selectedDish = {};
     let menu = [];
 
+    this.setSelectedDish = function(dish) {
+      selectedDish = dish;
+    }
+
+    this.getSelectedDish = function() {
+      return selectedDish;
+    }
 
     this.setSelectedDishId = function(id){
         selectedDishId = id;
@@ -37,8 +45,25 @@ var DinnerModel = function () {
         return menu;
     };
 
-    this.getDishPrice = function(id){return 0;}; //TODO
-    this.getTotalMenuPrice = function(){return 0}; //TODO
+    this.getDishPrice = function(dish){
+      if(typeof(dish.pricePerServing) !== 'undefined')
+        return dish.pricePerServing * numberOfGuests;
+      else {
+        return dish.extendedIngredients.length * numberOfGuests;
+      }
+    }; //TODO
+
+    this.getTotalMenuPrice = function(){
+      let price = 0;
+      for (let key in menu) {
+        if(typeof(menu[key].pricePerServing) !== 'undefined')
+          price += menu[key].pricePerServing;
+        else {
+          price += menu[key].extendedIngredients.length;
+        }
+      }
+      return price * numberOfGuests;
+    }; //TODO
 
     /*this.getDishPrice = function (id){
         let dish = this.getDish(id);
@@ -82,15 +107,23 @@ var DinnerModel = function () {
 
     //Adds the passed dish to the menu. If the dish of that type already exists on the menu
     //it is removed from the menu and the new one added.
+    /*
     this.addDishToMenu = function (id) {
         this.removeDishFromMenu(id);
         menu.push(id);
         this.notifyObservers();
     };
+    */
+    this.addDishToMenu = function () {
+        this.removeDishFromMenu(selectedDish.id);
+        menu.push(selectedDish);
+        this.notifyObservers();
+    };
 
     //Removes dish from menu
     this.removeDishFromMenu = function (id) {
-        if(index = menu.indexOf(id) != -1)
+        let index = menu.map(function(e) {return e.id;}).indexOf(id);
+        if(index != -1)
             menu.splice(index, 1);
     };
 
@@ -163,11 +196,7 @@ var DinnerModel = function () {
 
 /* TODO
 - handling errors
-- dishPrice/totalMenuPrice
-- dish object stored in menu, not rerequested every time
 - fix loader
-- fix hamburger price
-- fix print screen nb of guests
 - mAAAAAAAAYbe add the listener to each dish item
 - update of screens: pass down the nature of the update (nbOfGuests, menu add ...)
 - create view only when necessary - optional (ask about it)
