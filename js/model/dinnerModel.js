@@ -159,3 +159,16 @@ var DinnerModel = function () {
     };
 
 };
+
+
+/* TODO
+- handling errors
+- dishPrice/totalMenuPrice
+- dish object stored in menu, not rerequested every time
+- fix loader
+- fix hamburger price
+- fix print screen nb of guests
+- mAAAAAAAAYbe add the listener to each dish item
+- update of screens: pass down the nature of the update (nbOfGuests, menu add ...)
+- create view only when necessary - optional (ask about it)
+ */
