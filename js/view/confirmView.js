@@ -11,45 +11,51 @@ var ConfirmView = function (container, model) {
     // The observer update function, triggered by the model when there are changes
     this.update = function () {
 
-        this.$confirmList.empty();
+        if (container.is(":visible")) {
 
-        let dishes = model.getFullMenu();
-        for(let key in dishes) {
-          let dish = dishes[key];
-          let li = document.createElement("li");
-          li.classList.add("list-inline-item");
-          li.classList.add("px-2");
+            console.log("confirm update");
+            this.$confirmList.empty();
 
-          let img = document.createElement("img");
-          img.classList.add("img-fluid");
-          img.classList.add("border");
-          img.classList.add("border-dark");
+            let dishes = model.getFullMenu();
+            for (let key in dishes) {
+                let dish = dishes[key];
+                let li = document.createElement("li");
+                li.classList.add("list-inline-item");
+                li.classList.add("px-2");
 
-          img.setAttribute("src", dish.image);
-          img.setAttribute("alt", dish.title);
+                let img = document.createElement("img");
+                img.classList.add("img-fluid");
+                img.classList.add("border");
+                img.classList.add("border-dark");
 
-          let price = document.createElement("h6");
-          price.classList.add("price");
-          price.innerText = model.getDishPrice(dish).toFixed(2) + " SEK";
+                img.setAttribute("src", dish.image);
+                img.setAttribute("alt", dish.title);
 
-          li.appendChild(img);
-          li.appendChild(img);
-          li.appendChild(price);
+                let price = document.createElement("h6");
+                price.classList.add("price");
+                price.innerText = model.getDishPrice(dish).toFixed(2) + " SEK";
 
-          this.$confirmList.append(li);
+                li.appendChild(img);
+                li.appendChild(img);
+                li.appendChild(price);
+
+                this.$confirmList.append(li);
+            }
+
+            this.$totalPrice.text(model.getTotalMenuPrice().toFixed(2) + " SEK");
+            this.$numberOfGuests.text(model.getNumberOfGuests);
         }
 
-        this.$totalPrice.text(model.getTotalMenuPrice().toFixed(2) + " SEK");
-
+        return Promise.resolve();
     };
 
-    this.hide = function() {
+    this.hide = function () {
         container.hide();
     };
 
     this.show = function () {
-      this.$numberOfGuests.text(model.getNumberOfGuests);
         container.show();
+        this.update();
     };
 
 };

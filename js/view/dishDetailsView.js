@@ -10,9 +10,11 @@ let DishDetailsView = function (container, model) {
 
     this.show = function () {
 
+        console.log("dishDetail update");
+
         let id = model.getSelectedDishId();
 
-        model.getDish(id).then(function (dish) {
+        return model.getDish(id).then(function (dish) {
 
             if(dish.error){
                 alert("Error: " + dish.error);

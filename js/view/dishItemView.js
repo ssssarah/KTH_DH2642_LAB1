@@ -2,61 +2,68 @@ var DishItemView = function (container, model) {
 
     this.$dishList = container.find("#dishList");
 
-    this.showDishes = function (type = null, filter = null) {
+    this.update = function (type = null, filter = null) {
 
-        let self = this;
-        this.$dishList.empty();
+         if(container.is(":visible")){
 
-        let params = {};
+             console.log("dishItem update");
 
-        if(type){
-            params["type"] = type;
-        }
+             let self = this;
+             this.$dishList.empty();
 
-        if(filter){
-            params["query"] = filter;
-        }
+             let params = {};
 
-        return model.getAllDishes(params).then(function(dishes) {
+             if(type){
+                 params["type"] = type;
+             }
 
-            console.log(dishes);
+             if(filter){
+                 params["query"] = filter;
+             }
 
-            if(dishes.error){
-                alert("Error: " + dishes.error);
-                return;
-            }
+             return model.getAllDishes(params).then(function(dishes) {
 
-            dishes = dishes.results;
+                 console.log(dishes);
 
-            for (let key in dishes) {
-                let dish = dishes[key];
-                let item = document.createElement("button");
-                item.setAttribute("data-id", dish.id);
-                item.classList.add("btn");
-                item.classList.add("wrapper");
-                item.classList.add("myBg");
-                item.classList.add("border");
-                item.classList.add("border-dark");
-                item.classList.add("mx-4");
-                item.classList.add("my-4");
+                 if(dishes.error){
+                     alert("Error: " + dishes.error);
+                     return;
+                 }
 
-                let img = document.createElement("img");
-                img.classList.add("border-bottom");
-                img.classList.add("border-dark");
-                img.src = model.relativePath + dish.image;
-                img.alt = dish.title;
-                img.style.width = "200px";
+                 dishes = dishes.results;
 
-                let title = document.createElement("div");
-                title.innerText = dish.title;
+                 for (let key in dishes) {
+                     let dish = dishes[key];
+                     let item = document.createElement("button");
+                     item.setAttribute("data-id", dish.id);
+                     item.classList.add("btn");
+                     item.classList.add("wrapper");
+                     item.classList.add("myBg");
+                     item.classList.add("border");
+                     item.classList.add("border-dark");
+                     item.classList.add("mx-4");
+                     item.classList.add("my-4");
 
-                item.appendChild(img);
-                item.appendChild(title);
+                     let img = document.createElement("img");
+                     img.classList.add("border-bottom");
+                     img.classList.add("border-dark");
+                     img.src = model.relativePath + dish.image;
+                     img.alt = dish.title;
+                     img.style.width = "200px";
 
-                self.$dishList.append(item);
-            }
+                     let title = document.createElement("div");
+                     title.innerText = dish.title;
 
-        });
+                     item.appendChild(img);
+                     item.appendChild(title);
+
+                     self.$dishList.append(item);
+                 }
+
+
+             });
+
+         }
 
     };
 
@@ -65,8 +72,8 @@ var DishItemView = function (container, model) {
     };
     this.show = function () {
         container.show();
+        return this.update();
     };
 
-    this.showDishes();
 
 };

@@ -10,39 +10,44 @@ var SidebarView = function (container, model) {
 
     this.update = function() {
 
-        this.$menu.empty();
+        if(container.is(":visible")) {
 
-        let dishes = model.getFullMenu();
-        for(let key in dishes) {
-          let dish = dishes[key];
-          let item = document.createElement("a");
-          item.setAttribute("data-id", dish.id);
-          item.classList.add("row");
-          item.classList.add("m-1");
-          item.classList.add("myBg");
-          item.classList.add("border");
-          item.classList.add("border-dark");
+            this.$menu.empty();
 
-          let title = document.createElement("div");
-          title.classList.add("col-sm");
-          title.classList.add("price");
-          title.classList.add("text-uppercase");
-          title.innerHTML = dish.title;
+            let dishes = model.getFullMenu();
+            for(let key in dishes) {
+                let dish = dishes[key];
+                let item = document.createElement("a");
+                item.setAttribute("data-id", dish.id);
+                item.classList.add("row");
+                item.classList.add("m-1");
+                item.classList.add("myBg");
+                item.classList.add("border");
+                item.classList.add("border-dark");
 
-          let price = document.createElement("div");
-          price.classList.add("col-sm");
-          price.classList.add("price");
-          price.classList.add("text-right");
-          price.innerHTML = model.getDishPrice(dish).toFixed(2);
+                let title = document.createElement("div");
+                title.classList.add("col-sm");
+                title.classList.add("price");
+                title.classList.add("text-uppercase");
+                title.innerHTML = dish.title;
 
-          item.appendChild(title);
-          item.appendChild(price);
-          this.$menu.append(item);
+                let price = document.createElement("div");
+                price.classList.add("col-sm");
+                price.classList.add("price");
+                price.classList.add("text-right");
+                price.innerHTML = model.getDishPrice(dish).toFixed(2);
+
+                item.appendChild(title);
+                item.appendChild(price);
+                this.$menu.append(item);
+            }
+
+            let t = "SEK " + model.getTotalMenuPrice().toFixed(2);
+            this.$totalPrice.text(t);
+            this.$totalPrice_collapse.text(t);
         }
 
-        let t = "SEK " + model.getTotalMenuPrice().toFixed(2);
-        this.$totalPrice.text(t);
-        this.$totalPrice_collapse.text(t);
+        return Promise.resolve();
 
     };
 
@@ -51,5 +56,6 @@ var SidebarView = function (container, model) {
     };
     this.show = function () {
         container.show();
+        return this.update();
     };
 };

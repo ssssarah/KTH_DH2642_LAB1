@@ -7,5 +7,6 @@ var WelcomeView = function(container, model) {
   };
   this.show = function() {
     container.show();
+    return Promise.resolve();
   };
 };
