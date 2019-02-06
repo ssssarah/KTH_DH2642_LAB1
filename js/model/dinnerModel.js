@@ -151,7 +151,7 @@ var DinnerModel = function () {
             method: "GET",
             headers: authHeader
         }).then(function(response){
-            handleHTTPError(response);
+            return handleHTTPError(response);
         }).catch(function(error) {
             return new Promise(function(resolve){
                 resolve({"error": error.message});
@@ -173,7 +173,7 @@ var DinnerModel = function () {
             method: "GET",
             headers: authHeader
         }).then(function(response){
-            handleHTTPError(response);
+            return handleHTTPError(response);
         }).catch(function(error) {
             return new Promise(function(resolve){
                 resolve({"error": error.message});

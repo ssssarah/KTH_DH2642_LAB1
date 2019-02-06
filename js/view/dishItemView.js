@@ -19,6 +19,8 @@ var DishItemView = function (container, model) {
 
         return model.getAllDishes(params).then(function(dishes) {
 
+            console.log(dishes);
+
             if(dishes.error){
                 alert("Error: " + dishes.error);
                 return;

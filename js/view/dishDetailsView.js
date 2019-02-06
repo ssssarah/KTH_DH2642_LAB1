@@ -13,6 +13,13 @@ let DishDetailsView = function (container, model) {
         let id = model.getSelectedDishId();
 
         model.getDish(id).then(function (dish) {
+
+            if(dish.error){
+                alert("Error: " + dish.error);
+                container.show();
+                return;
+            }
+
             model.setSelectedDish(dish);
 
             let numberOfGuests = model.getNumberOfGuests();
