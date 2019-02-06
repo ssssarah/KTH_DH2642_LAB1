@@ -17,11 +17,11 @@ var DinnerModel = function () {
 
     this.setSelectedDish = function(dish) {
       selectedDish = dish;
-    }
+    };
 
     this.getSelectedDish = function() {
       return selectedDish;
-    }
+    };
 
     this.setSelectedDishId = function(id){
         selectedDishId = id;
@@ -127,19 +127,16 @@ var DinnerModel = function () {
             menu.splice(index, 1);
     };
 
-    function handleHTTPError(response) {
+    let handleHTTPError = function(response){
         if(response.ok)
-            return response;
-        throw Error(response.statusText);
-    }
+            return response.json();
+        else
+            return new Promise(function(resolve){
+                resolve({"error": response.statusText});
+            });
+    };
 
     const authHeader = {"X-Mashape-Key": "3d2a031b4cmsh5cd4e7b939ada54p19f679jsn9a775627d767"};
-
-    const createFormData = object => {
-        let ret = new FormData();
-        Object.keys(object).forEach(k => ret.append(k, object[k]));
-        return ret;
-    };
 
     /**
      *
@@ -153,9 +150,13 @@ var DinnerModel = function () {
         return fetch(url.toString(), {
             method: "GET",
             headers: authHeader
-        })
-            .then(handleHTTPError)
-            .then(response => response.json());
+        }).then(function(response){
+            handleHTTPError(response);
+        }).catch(function(error) {
+            return new Promise(function(resolve){
+                resolve({"error": error.message});
+            });
+        });
     };
 
 
@@ -171,9 +172,13 @@ var DinnerModel = function () {
         return fetch(url, {
             method: "GET",
             headers: authHeader
-        })
-            .then(handleHTTPError)
-            .then(response => response.json());
+        }).then(function(response){
+            handleHTTPError(response);
+        }).catch(function(error) {
+            return new Promise(function(resolve){
+                resolve({"error": error.message});
+            });
+        });
     };
 
     /*****************************************

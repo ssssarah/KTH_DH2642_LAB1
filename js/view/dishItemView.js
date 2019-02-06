@@ -19,6 +19,11 @@ var DishItemView = function (container, model) {
 
         return model.getAllDishes(params).then(function(dishes) {
 
+            if(dishes.error){
+                alert("Error: " + dishes.error);
+                return;
+            }
+
             dishes = dishes.results;
 
             for (let key in dishes) {
