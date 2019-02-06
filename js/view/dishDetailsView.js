@@ -4,6 +4,10 @@ let DishDetailsView = function (container, model) {
     this.$backBtn = container.find("#dishDetail_backBtn");
     this.$ingredientList = container.find("#ingredientList");
     this.$price = container.find("#price");
+    this.$dishName = container.find("#dishName");
+    this.$dishImg = container.find("#dishImg");
+    this.$dishPrep = container.find("#dishPrep");
+    this.$nbOfGuests = container.find("#dishDetail_numberOfGuests");
 
     let self = this;
     model.addObserver(this);
@@ -16,6 +20,13 @@ let DishDetailsView = function (container, model) {
 
         return model.getDish(id).then(function (dish) {
 
+            self.$ingredientList.empty();
+            self.$dishName.text("");
+            self.$dishImg.attr("src", "");
+            self.$dishPrep.text("");
+            self.$nbOfGuests.text("");
+            self.$price.text("");
+
             if(dish.error){
                 alert("Error: " + dish.error);
                 container.show();
@@ -25,12 +36,10 @@ let DishDetailsView = function (container, model) {
             model.setSelectedDish(dish);
 
             let numberOfGuests = model.getNumberOfGuests();
-            container.find("#dishName").text(dish.title);
-            container.find("#dishImg").attr("src", dish.image);
-            container.find("#dishPrep").text(dish.instructions);
-            container.find("#dishDetail_numberOfGuests").text(numberOfGuests);
-
-            self.$ingredientList.empty();
+            self.$dishName.text(dish.title);
+            self.$dishImg.attr("src", dish.image);
+            self.$dishPrep.text(dish.instructions);
+            self.$nbOfGuests.text(numberOfGuests);
 
             let totalPrice = 0;
 
