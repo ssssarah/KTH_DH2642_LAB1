@@ -52,6 +52,8 @@ var DishItemView = function (container, model) {
                      img.style.width = "200px";
 
                      let title = document.createElement("div");
+                     title.classList.add("text-truncate");
+                     title.style.width = "200px";
                      title.innerText = dish.title;
 
                      item.appendChild(img);
