@@ -26,7 +26,7 @@ var DishItemView = function (container, model) {
                  console.log(dishes);
 
                  if(dishes.error){
-                     alert("Error: " + dishes.error);
+                     alert("Error item: " + dishes.error);
                      return;
                  }
 
